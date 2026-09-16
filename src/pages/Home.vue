@@ -21,14 +21,6 @@
           ></span>
         </div>
       </div>
-
-      <!-- Overlay Text -->
-      <div class="hero-overlay">
-        <div class="hero-content">
-          <h1>Tigers Sports Club</h1>
-          <p>Dallas Kabaddi Champions</p>
-        </div>
-      </div>
     </section>
 
     <!-- Event Info Section -->
@@ -261,37 +253,6 @@ const formatDate = (date) => {
   background: var(--color-primary-orange);
   width: 30px;
   border-radius: 6px;
-}
-
-/* Hero Overlay Text */
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(26, 26, 26, 0.6) 0%, rgba(26, 26, 26, 0.3) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 5;
-}
-
-.hero-content {
-  text-align: center;
-  color: white;
-}
-
-.hero-content h1 {
-  font-size: 3.5rem;
-  margin-bottom: var(--spacing-md);
-  font-weight: 700;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-}
-
-.hero-content p {
-  font-size: 1.5rem;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Event Info Section */
