@@ -1,91 +1,58 @@
 <template>
   <footer class="footer">
     <div class="container">
-      <div class="footer-content">
-        <!-- About Section -->
-        <div class="footer-section">
+      <!-- Main Footer Content -->
+      <div class="footer-main">
+        <!-- Logo & Social -->
+        <div class="footer-about">
           <h3>Tigers Sports Club</h3>
-          <p>
-            Promoting professional Kabaddi in Dallas, Texas. Supporting the community through sports
-            excellence and team spirit.
-          </p>
           <div class="social-links">
-            <a href="https://www.facebook.com/profile.php?id=61590221079534" target="_blank" rel="noopener noreferrer" title="Facebook">
-              📘 Facebook
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" title="Instagram">
-              📷 Instagram
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" title="YouTube">
-              📹 YouTube
+            <a href="https://www.facebook.com/profile.php?id=61590221079534" target="_blank" rel="noopener noreferrer" title="Facebook" class="facebook-link">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="#1877F2">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
             </a>
           </div>
         </div>
 
         <!-- Quick Links -->
-        <div class="footer-section">
-          <h3>Quick Links</h3>
+        <div class="footer-links-section">
+          <h4>Links</h4>
           <ul>
             <li><router-link to="/">Home</router-link></li>
-            <li><router-link to="/about">About Us</router-link></li>
+            <li><router-link to="/founders">Founders</router-link></li>
             <li><router-link to="/events">Events</router-link></li>
-            <li><router-link to="/teams">Teams</router-link></li>
-            <li><router-link to="/gallery">Gallery</router-link></li>
+            <li><router-link to="/contact">Contact</router-link></li>
           </ul>
         </div>
 
-        <!-- Events -->
-        <div class="footer-section">
-          <h3>Upcoming Events</h3>
-          <ul>
-            <li>
-              <span class="event-date">Sep 26, 2026</span>
-              <span class="event-name">Dallas Kabaddi Cup 2026</span>
-            </li>
-            <li>
-              <span class="event-date">Ongoing</span>
-              <span class="event-name">Community Training</span>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Contact -->
-        <div class="footer-section">
-          <h3>Contact Us</h3>
-          <ul>
-            <li>📍 Dallas, Texas</li>
-            <li>📧 <a href="mailto:info@tigerssportsclub.com">info@tigerssportsclub.com</a></li>
-            <li>📞 <a href="tel:+1234567890">(123) 456-7890</a></li>
-            <li>🕐 Mon - Fri: 9AM - 6PM</li>
-          </ul>
+        <!-- Contact Info -->
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <p>📧 info@tigerssportsclub.com</p>
+          <p>📞 (123) 456-7890</p>
+          <p>📍 Dallas, Texas</p>
         </div>
       </div>
 
       <!-- Footer Bottom -->
       <div class="footer-bottom">
-        <p>&copy; 2026 Tigers Sports Club Dallas. All rights reserved.</p>
-        <div class="footer-links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="#">Contact</a>
-        </div>
+        <p>&copy; 2026 Tigers Sports Club. All rights reserved.</p>
       </div>
     </div>
   </footer>
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
 </script>
 
 <style scoped>
 .footer {
-  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-black-light) 100%);
+  background: var(--color-primary-dark);
   color: var(--text-light);
-  padding: var(--spacing-3xl) var(--spacing-lg) var(--spacing-lg);
+  padding: var(--spacing-2xl) var(--spacing-lg);
   margin-top: var(--spacing-3xl);
+  border-top: 3px solid var(--color-primary-orange);
 }
 
 .container {
@@ -93,134 +60,85 @@ const router = useRouter()
   margin: 0 auto;
 }
 
-.footer-content {
+.footer-main {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: var(--spacing-2xl);
-  margin-bottom: var(--spacing-2xl);
-  padding-bottom: var(--spacing-2xl);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: var(--spacing-xl);
 }
 
-.footer-section h3 {
-  font-size: 1.1rem;
-  margin-bottom: var(--spacing-lg);
+.footer-about h3,
+.footer-links-section h4,
+.footer-contact h4 {
   color: var(--color-primary-orange);
-  font-weight: 700;
-}
-
-.footer-section p {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  margin-bottom: var(--spacing-lg);
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.footer-section ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-section li {
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 600;
   margin-bottom: var(--spacing-md);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
-}
-
-.footer-section a {
-  color: var(--color-primary-orange);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer-section a:hover {
-  color: var(--color-orange-light);
-  text-decoration: underline;
 }
 
 .social-links {
   display: flex;
   gap: var(--spacing-md);
-  flex-wrap: wrap;
 }
 
 .social-links a {
+  text-decoration: none;
+  transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: var(--spacing-sm) var(--spacing-md);
-  background: rgba(255, 140, 0, 0.2);
-  border: 1px solid var(--color-primary-orange);
-  border-radius: var(--radius-md);
-  font-size: 0.85rem;
-  transition: all 0.3s ease;
+  justify-content: center;
 }
 
 .social-links a:hover {
-  background: var(--color-primary-orange);
-  color: var(--color-primary-dark);
+  transform: scale(1.15);
 }
 
-.event-date {
-  font-size: 0.8rem;
-  color: var(--color-primary-orange);
-  font-weight: 600;
+.social-links svg {
+  width: 28px;
+  height: 28px;
 }
 
-.event-name {
-  color: var(--text-light);
+.footer-links-section ul,
+.footer-contact {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-/* Footer Bottom -->
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--spacing-lg);
-  padding-top: var(--spacing-lg);
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.7);
+.footer-links-section li {
+  margin-bottom: var(--spacing-sm);
 }
 
-.footer-links {
-  display: flex;
-  gap: var(--spacing-xl);
-}
-
-.footer-links a {
-  color: var(--color-primary-orange);
+.footer-links-section a {
+  color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
+  font-size: 0.9rem;
   transition: color 0.3s ease;
 }
 
-.footer-links a:hover {
-  color: var(--color-orange-light);
+.footer-links-section a:hover {
+  color: var(--color-primary-orange);
+}
+
+.footer-contact p {
+  font-size: 0.9rem;
+  margin: var(--spacing-sm) 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .footer {
-    padding: var(--spacing-2xl) var(--spacing-lg) var(--spacing-lg);
-  }
-
-  .footer-content {
+  .footer-main {
     grid-template-columns: 1fr;
-    gap: var(--spacing-xl);
-  }
-
-  .footer-bottom {
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-  }
-
-  .footer-links {
-    justify-content: center;
-    flex-wrap: wrap;
+    gap: var(--spacing-lg);
   }
 }
 </style>
