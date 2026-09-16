@@ -203,9 +203,9 @@ const pastMatches = ref([
   },
   {
     id: 2,
-    title: 'Championship Match',
-    description: 'Finals highlights and best moments',
-    videoId: '' // Add video ID when available
+    title: 'Championship Match - 2025 Finals',
+    description: 'Final Match highlights - Dallas Kabaddi Cup 2025',
+    videoId: 'BwJFcF_5mpg' // From: https://www.youtube.com/live/BwJFcF_5mpg
   }
 ])
 
