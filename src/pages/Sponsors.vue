@@ -12,15 +12,16 @@
           <span class="tier-badge gold">Gold Sponsors</span>
         </h2>
         <div class="carousel-wrapper">
-          <button class="carousel-nav prev" @click="scrollCarousel('gold', -1)">❮</button>
-          <div class="sponsors-carousel" ref="goldCarousel">
-            <div class="carousel-track" :style="{ transform: `translateX(${goldOffset}px)` }">
+          <div class="sponsors-carousel">
+            <div class="carousel-track infinite-scroll" :style="{ animationDuration: `${goldDuration}s` }">
               <div v-for="(sponsor, idx) in carouselSponsors.gold" :key="`gold-${idx}`" class="sponsor-card gold">
+                <img :src="sponsor" :alt="`Gold Sponsor ${idx + 1}`" class="sponsor-logo" />
+              </div>
+              <div v-for="(sponsor, idx) in carouselSponsors.gold" :key="`gold-dup-${idx}`" class="sponsor-card gold">
                 <img :src="sponsor" :alt="`Gold Sponsor ${idx + 1}`" class="sponsor-logo" />
               </div>
             </div>
           </div>
-          <button class="carousel-nav next" @click="scrollCarousel('gold', 1)">❯</button>
         </div>
       </section>
 
@@ -30,15 +31,16 @@
           <span class="tier-badge platinum">Platinum Sponsors</span>
         </h2>
         <div class="carousel-wrapper">
-          <button class="carousel-nav prev" @click="scrollCarousel('platinum', -1)">❮</button>
-          <div class="sponsors-carousel" ref="platinumCarousel">
-            <div class="carousel-track" :style="{ transform: `translateX(${platinumOffset}px)` }">
+          <div class="sponsors-carousel">
+            <div class="carousel-track infinite-scroll" :style="{ animationDuration: `${platinumDuration}s` }">
               <div v-for="(sponsor, idx) in carouselSponsors.platinum" :key="`platinum-${idx}`" class="sponsor-card platinum">
+                <img :src="sponsor" :alt="`Platinum Sponsor ${idx + 1}`" class="sponsor-logo" />
+              </div>
+              <div v-for="(sponsor, idx) in carouselSponsors.platinum" :key="`platinum-dup-${idx}`" class="sponsor-card platinum">
                 <img :src="sponsor" :alt="`Platinum Sponsor ${idx + 1}`" class="sponsor-logo" />
               </div>
             </div>
           </div>
-          <button class="carousel-nav next" @click="scrollCarousel('platinum', 1)">❯</button>
         </div>
       </section>
 
@@ -48,15 +50,16 @@
           <span class="tier-badge silver">Silver Sponsors</span>
         </h2>
         <div class="carousel-wrapper">
-          <button class="carousel-nav prev" @click="scrollCarousel('silver', -1)">❮</button>
-          <div class="sponsors-carousel" ref="silverCarousel">
-            <div class="carousel-track" :style="{ transform: `translateX(${silverOffset}px)` }">
+          <div class="sponsors-carousel">
+            <div class="carousel-track infinite-scroll" :style="{ animationDuration: `${silverDuration}s` }">
               <div v-for="(sponsor, idx) in carouselSponsors.silver" :key="`silver-${idx}`" class="sponsor-card silver">
+                <img :src="sponsor" :alt="`Silver Sponsor ${idx + 1}`" class="sponsor-logo" />
+              </div>
+              <div v-for="(sponsor, idx) in carouselSponsors.silver" :key="`silver-dup-${idx}`" class="sponsor-card silver">
                 <img :src="sponsor" :alt="`Silver Sponsor ${idx + 1}`" class="sponsor-logo" />
               </div>
             </div>
           </div>
-          <button class="carousel-nav next" @click="scrollCarousel('silver', 1)">❯</button>
         </div>
       </section>
 
@@ -66,15 +69,16 @@
           <span class="tier-badge proud">Proud Supporters</span>
         </h2>
         <div class="carousel-wrapper">
-          <button class="carousel-nav prev" @click="scrollCarousel('proud', -1)">❮</button>
-          <div class="sponsors-carousel" ref="proudCarousel">
-            <div class="carousel-track" :style="{ transform: `translateX(${proudOffset}px)` }">
+          <div class="sponsors-carousel">
+            <div class="carousel-track infinite-scroll" :style="{ animationDuration: `${proudDuration}s` }">
               <div v-for="(sponsor, idx) in carouselSponsors.proud" :key="`proud-${idx}`" class="sponsor-card proud">
+                <img :src="sponsor" :alt="`Proud Supporter ${idx + 1}`" class="sponsor-logo" />
+              </div>
+              <div v-for="(sponsor, idx) in carouselSponsors.proud" :key="`proud-dup-${idx}`" class="sponsor-card proud">
                 <img :src="sponsor" :alt="`Proud Supporter ${idx + 1}`" class="sponsor-logo" />
               </div>
             </div>
           </div>
-          <button class="carousel-nav next" @click="scrollCarousel('proud', 1)">❯</button>
         </div>
       </section>
 
@@ -103,12 +107,16 @@ const carouselSponsors = ref({
   proud: []
 })
 
-const goldOffset = ref(0)
-const platinumOffset = ref(0)
-const silverOffset = ref(0)
-const proudOffset = ref(0)
+const goldDuration = ref(0)
+const platinumDuration = ref(0)
+const silverDuration = ref(0)
+const proudDuration = ref(0)
 
-const cardWidth = 180 + 20 // image width + gap
+// Calculate animation duration based on number of sponsors
+const calculateDuration = (count) => {
+  // 4 seconds per card for smooth scrolling
+  return Math.max(count * 4, 20)
+}
 
 // Dynamically import sponsor images from folders
 const loadSponsorImages = async () => {
@@ -116,47 +124,25 @@ const loadSponsorImages = async () => {
   const goldModules = import.meta.glob('@/assets/images/sponsors/gold/*.{jpg,jpeg,png}', { eager: true })
   carouselSponsors.value.gold = Object.values(goldModules).map((m) => m.default)
   goldSponsors.value = carouselSponsors.value.gold
+  goldDuration.value = calculateDuration(goldSponsors.value.length)
 
   // Load Platinum sponsors
   const platinumModules = import.meta.glob('@/assets/images/sponsors/platinum/*.{jpg,jpeg,png}', { eager: true })
   carouselSponsors.value.platinum = Object.values(platinumModules).map((m) => m.default)
   platinumSponsors.value = carouselSponsors.value.platinum
+  platinumDuration.value = calculateDuration(platinumSponsors.value.length)
 
   // Load Silver sponsors
   const silverModules = import.meta.glob('@/assets/images/sponsors/silver/*.{jpg,jpeg,png}', { eager: true })
   carouselSponsors.value.silver = Object.values(silverModules).map((m) => m.default)
   silverSponsors.value = carouselSponsors.value.silver
+  silverDuration.value = calculateDuration(silverSponsors.value.length)
 
   // Load Proud supporters
   const proudModules = import.meta.glob('@/assets/images/sponsors/proud/*.{jpg,jpeg,png}', { eager: true })
   carouselSponsors.value.proud = Object.values(proudModules).map((m) => m.default)
   proudSponsors.value = carouselSponsors.value.proud
-
-  // Start auto-scroll for each carousel
-  startAutoScroll('gold')
-  startAutoScroll('platinum')
-  startAutoScroll('silver')
-  startAutoScroll('proud')
-}
-
-const scrollCarousel = (tier, direction) => {
-  const offset = ref => offset.value + direction * cardWidth
-
-  if (tier === 'gold') {
-    goldOffset.value += direction * cardWidth
-  } else if (tier === 'platinum') {
-    platinumOffset.value += direction * cardWidth
-  } else if (tier === 'silver') {
-    silverOffset.value += direction * cardWidth
-  } else if (tier === 'proud') {
-    proudOffset.value += direction * cardWidth
-  }
-}
-
-const startAutoScroll = (tier) => {
-  setInterval(() => {
-    scrollCarousel(tier, 1)
-  }, 4000)
+  proudDuration.value = calculateDuration(proudSponsors.value.length)
 }
 
 onMounted(() => {
@@ -242,7 +228,6 @@ onMounted(() => {
   position: relative;
   display: flex;
   align-items: center;
-  gap: var(--spacing-lg);
   padding: var(--spacing-xl) 0;
 }
 
@@ -260,7 +245,19 @@ onMounted(() => {
 .carousel-track {
   display: flex;
   gap: var(--spacing-lg);
-  transition: transform 0.5s ease;
+}
+
+.carousel-track.infinite-scroll {
+  animation: scroll linear infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .sponsor-card {
@@ -325,34 +322,6 @@ onMounted(() => {
   display: block;
 }
 
-/* Carousel Navigation Buttons */
-.carousel-nav {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  border: none;
-  background: var(--color-primary-orange);
-  color: white;
-  border-radius: 50%;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 8px rgba(255, 140, 0, 0.2);
-}
-
-.carousel-nav:hover {
-  background: var(--color-orange-dark);
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(255, 140, 0, 0.4);
-}
-
-.carousel-nav:active {
-  transform: scale(0.95);
-}
-
 /* Call to Action Section */
 .sponsorship-section {
   text-align: center;
@@ -408,16 +377,6 @@ onMounted(() => {
     font-size: 1.2rem;
   }
 
-  .carousel-wrapper {
-    gap: var(--spacing-sm);
-  }
-
-  .carousel-nav {
-    width: 36px;
-    height: 36px;
-    font-size: 1rem;
-  }
-
   .sponsors-carousel {
     height: 160px;
     padding: var(--spacing-sm);
@@ -435,16 +394,6 @@ onMounted(() => {
 }
 
 @media (max-width: 480px) {
-  .carousel-wrapper {
-    gap: var(--spacing-xs);
-  }
-
-  .carousel-nav {
-    width: 32px;
-    height: 32px;
-    font-size: 0.9rem;
-  }
-
   .sponsors-carousel {
     height: 140px;
   }
