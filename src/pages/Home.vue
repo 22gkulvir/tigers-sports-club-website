@@ -53,27 +53,46 @@
 
         <!-- Live Stream -->
         <div class="video-container">
-          <h3 class="video-title">🎬 Live Stream</h3>
-          <div class="youtube-embed">
+          <h3 class="video-title">🎬 Live Stream - Dallas Kabaddi Cup 2026</h3>
+          <div v-if="liveVideoId" class="youtube-embed">
             <iframe
               width="100%"
               height="500"
               :src="`https://www.youtube.com/embed/${liveVideoId}?autoplay=0&rel=0`"
-              title="Dallas Kabaddi Cup - Live Stream"
+              title="Dallas Kabaddi Cup 2026 - Live Stream"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen>
             </iframe>
           </div>
-          <p class="video-info">Watch live matches of Dallas Kabaddi Cup 2026. Event Date: Saturday, September 26, 2026</p>
+          <div v-else class="live-placeholder">
+            <div class="placeholder-content">
+              <span class="live-icon">📡</span>
+              <h4>Live Stream Coming Soon</h4>
+              <p>Join us on Saturday, September 26, 2026 for the Dallas Kabaddi Cup 2026 live stream!</p>
+              <p class="countdown">Event Date: Saturday, September 26, 2026</p>
+            </div>
+          </div>
+          <p v-if="liveVideoId" class="video-info">Watch live matches of Dallas Kabaddi Cup 2026. Event Date: Saturday, September 26, 2026</p>
         </div>
 
         <!-- Past Matches -->
         <div class="video-container">
           <h3 class="video-title">📹 Past Matches & Highlights</h3>
           <div class="video-grid">
-            <div v-for="match in pastMatches" :key="match.id" class="video-card">
-              <div class="video-placeholder">
+            <div v-for="match in pastMatches" :key="match.id" class="past-match-card">
+              <div v-if="match.videoId" class="youtube-embed-small">
+                <iframe
+                  width="100%"
+                  height="200"
+                  :src="`https://www.youtube.com/embed/${match.videoId}?autoplay=0&rel=0`"
+                  :title="match.title"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen>
+                </iframe>
+              </div>
+              <div v-else class="video-placeholder">
                 <span>🏆</span>
                 <p>{{ match.title }}</p>
               </div>
@@ -171,18 +190,22 @@ onUnmounted(() => {
 })
 
 // YouTube Videos
-const liveVideoId = ref('Ibe9oQ2_19M') // From: https://www.youtube.com/live/Ibe9oQ2_19M
+// Live video ID - set this on event day with the 2026 live stream link
+const liveVideoId = ref('') // Update this on September 26, 2026
 
+// Past matches - add previous year's tournament video and highlights
 const pastMatches = ref([
   {
     id: 1,
-    title: 'Previous Tournament',
-    description: 'Highlights from last year\'s Dallas Kabaddi Cup 2025'
+    title: 'Dallas Kabaddi Cup 2025',
+    description: 'Highlights from last year\'s tournament - Previous Year Event',
+    videoId: 'Ibe9oQ2_19M' // From: https://www.youtube.com/live/Ibe9oQ2_19M
   },
   {
     id: 2,
     title: 'Championship Match',
-    description: 'Finals highlights and best moments'
+    description: 'Finals highlights and best moments',
+    videoId: '' // Add video ID when available
   }
 ])
 
@@ -497,6 +520,94 @@ const formatDate = (date) => {
   border-radius: var(--radius-lg);
   border-left: 4px solid var(--color-primary-orange);
   margin-bottom: var(--spacing-2xl);
+}
+
+/* Live Placeholder Styles */
+.live-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-black-light) 100%);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-3xl) var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+.placeholder-content {
+  text-align: center;
+  color: white;
+}
+
+.live-icon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: var(--spacing-lg);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.placeholder-content h4 {
+  font-size: 1.8rem;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-primary-orange);
+  font-weight: 700;
+}
+
+.placeholder-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: var(--spacing-md);
+}
+
+.countdown {
+  font-size: 0.9rem;
+  color: var(--color-primary-orange);
+  font-weight: 600;
+}
+
+/* Embedded Videos */
+.youtube-embed-small {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--bg-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.youtube-embed-small iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: var(--radius-lg);
+}
+
+.past-match-card {
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+
+.past-match-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
 }
 
 /* Announcements Section */
