@@ -26,23 +26,7 @@
     <!-- Event Info Section -->
     <section class="event-info">
       <div class="container">
-        <div class="info-card">
-          <h2>🏆 Dallas Kabaddi Cup 2026</h2>
-          <div class="info-details">
-            <div class="detail">
-              <span class="label">📅 Date:</span>
-              <span class="value">Saturday, September 26, 2026</span>
-            </div>
-            <div class="detail">
-              <span class="label">📍 Location:</span>
-              <span class="value">Southfork Ranch, 3700 Hogge Dr, Parker, TX 75002</span>
-            </div>
-            <div class="detail">
-              <span class="label">🎯 Teams:</span>
-              <span class="value">8+ Teams • 12 Matches • 1000+ Spectators</span>
-            </div>
-          </div>
-        </div>
+        <img :src="eventInfoBannerImage" alt="Dallas Kabaddi Cup 2026 Event Information" class="event-banner" />
       </div>
     </section>
 
@@ -106,6 +90,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import hero1 from '@/assets/images/hero/hero-1.jpg'
 import hero2 from '@/assets/images/hero/hero-2.jpg'
 import hero3 from '@/assets/images/hero/hero-3.jpg'
+import eventInfoBanner from '@/assets/images/event-info-banner.jpg'
 
 // Hero carousel
 const currentHeroIndex = ref(0)
@@ -114,6 +99,9 @@ const heroImages = ref([
   hero2,
   hero3
 ])
+
+// Event info banner
+const eventInfoBannerImage = ref(eventInfoBanner)
 
 let autoAdvanceInterval = null
 
@@ -324,42 +312,24 @@ const formatDate = (date) => {
 
 /* Event Info Section */
 .event-info {
-  padding: var(--spacing-3xl) var(--spacing-lg);
+  padding: var(--spacing-2xl) var(--spacing-lg);
   background: var(--bg-primary);
 }
 
-.info-card {
-  background: var(--bg-secondary);
-  padding: var(--spacing-2xl);
+.event-banner {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
   border-radius: var(--radius-lg);
-  border-left: 4px solid var(--color-primary-orange);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.info-card h2 {
-  font-size: 1.8rem;
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-xl);
-  font-weight: 600;
-}
-
-.info-details {
-  display: grid;
-  gap: var(--spacing-lg);
-}
-
-.detail {
-  display: flex;
-  gap: var(--spacing-lg);
-}
-
-.label {
-  font-weight: 600;
-  color: var(--color-primary-orange);
-  min-width: 140px;
-}
-
-.value {
-  color: var(--text-primary);
+.event-banner:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(255, 140, 0, 0.2);
 }
 
 /* Video Section */
