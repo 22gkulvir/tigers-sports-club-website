@@ -2,22 +2,31 @@
   <div class="home">
     <!-- Hero Carousel Section -->
     <section class="hero-carousel">
-      <div class="carousel-container">
-        <img
-          :src="heroImages[currentHeroIndex]"
-          :alt="`Hero ${currentHeroIndex + 1}`"
-          class="hero-image"
-        />
-        <div class="carousel-buttons">
-          <button class="carousel-btn" @click="previousHero">❮</button>
-          <button class="carousel-btn" @click="nextHero">❯</button>
+      <div class="carousel-wrapper">
+        <div class="carousel-container">
+          <div class="carousel-track infinite-scroll" :style="{ animationDuration: `${carouselDuration}s` }">
+            <img
+              v-for="(image, idx) in heroImages"
+              :key="`hero-${idx}`"
+              :src="image"
+              :alt="`Hero ${idx + 1}`"
+              class="hero-image"
+            />
+            <img
+              v-for="(image, idx) in heroImages"
+              :key="`hero-dup-${idx}`"
+              :src="image"
+              :alt="`Hero ${idx + 1}`"
+              class="hero-image"
+            />
+          </div>
         </div>
         <div class="carousel-dots">
           <span
             v-for="(_, index) in heroImages"
             :key="index"
             :class="['dot', { active: index === currentHeroIndex }]"
-            @click="currentHeroIndex = index"
+            @click="scrollToImage(index)"
           ></span>
         </div>
       </div>
@@ -115,12 +124,12 @@ const heroImages = ref([
   hero3
 ])
 
-const nextHero = () => {
-  currentHeroIndex.value = (currentHeroIndex.value + 1) % heroImages.value.length
-}
+// Calculate animation duration based on number of images
+// 5 seconds per image for smooth scrolling
+const carouselDuration = ref(heroImages.value.length * 5)
 
-const previousHero = () => {
-  currentHeroIndex.value = (currentHeroIndex.value - 1 + heroImages.value.length) % heroImages.value.length
+const scrollToImage = (index) => {
+  currentHeroIndex.value = index
 }
 
 // Announcements
@@ -185,10 +194,36 @@ const formatDate = (date) => {
   overflow: hidden;
 }
 
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
 .carousel-container {
   position: relative;
   width: 100%;
   height: 100%;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.carousel-track.infinite-scroll {
+  animation: heroScroll linear infinite;
+}
+
+@keyframes heroScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .hero-image {
@@ -197,38 +232,7 @@ const formatDate = (date) => {
   object-fit: contain;
   display: block;
   background-color: #000;
-}
-
-.carousel-buttons {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 var(--spacing-lg);
-  transform: translateY(-50%);
-  z-index: 10;
-}
-
-.carousel-btn {
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.carousel-btn:hover {
-  background: rgba(0, 0, 0, 0.8);
-  transform: scale(1.1);
+  flex-shrink: 0;
 }
 
 .carousel-dots {
