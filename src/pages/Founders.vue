@@ -34,30 +34,120 @@ import { ref } from 'vue'
 const founders = ref([
   {
     id: 1,
-    name: 'Founder Name 1',
-    role: 'President & Co-founder',
-    initials: 'F1',
-    bio: 'With over 10 years of experience in sports management, Founder 1 has been instrumental in establishing Tigers Sports Club as a leading Kabaddi organization in Dallas. Passionate about promoting traditional sports and community building.',
-    phone: '+1 (214) 123-4567',
-    email: 'founder1@tigerssportsclub.com'
+    name: 'Sabjit Gill',
+    role: 'Founder & Co-organizer',
+    initials: 'SG',
+    bio: 'One of the founding members of Tigers Sports Club Dallas, dedicated to promoting Kabaddi in the community.',
+    phone: '469-222-4038',
+    email: 'sabjit@tigerssportsclub.com'
   },
   {
     id: 2,
-    name: 'Founder Name 2',
-    role: 'Vice President & Co-founder',
-    initials: 'F2',
-    bio: 'An accomplished Kabaddi player and coach, Founder 2 brings expertise in player development and tournament organization. Dedicated to nurturing young talent and building a competitive team.',
-    phone: '+1 (214) 234-5678',
-    email: 'founder2@tigerssportsclub.com'
+    name: 'Rajveer AK',
+    role: 'Founder & Co-organizer',
+    initials: 'RA',
+    bio: 'Passionate about sports and community engagement, instrumental in organizing tournaments and events.',
+    phone: '501-266-4519',
+    email: 'rajveer@tigerssportsclub.com'
   },
   {
     id: 3,
-    name: 'Founder Name 3',
-    role: 'Secretary & Co-founder',
-    initials: 'F3',
-    bio: 'With a background in community development, Founder 3 focuses on building relationships with sponsors and community partners. Committed to making Tigers Sports Club a household name in Dallas.',
-    phone: '+1 (214) 345-6789',
-    email: 'founder3@tigerssportsclub.com'
+    name: 'Kuldeep S. Dhillon',
+    role: 'Founder & Co-organizer',
+    initials: 'KD',
+    bio: 'Dedicated to developing Kabaddi talent in Dallas and building a strong sporting community.',
+    phone: '214-733-4307',
+    email: 'kuldeep@tigerssportsclub.com'
+  },
+  {
+    id: 4,
+    name: 'Babbu Khera',
+    role: 'Founder & Co-organizer',
+    initials: 'BK',
+    bio: 'Supporting the vision of promoting traditional sports and community values through Tigers Sports Club.',
+    phone: '601-622-1011',
+    email: 'babbu@tigerssportsclub.com'
+  },
+  {
+    id: 5,
+    name: 'Sandeep Kang',
+    role: 'Founder & Co-organizer',
+    initials: 'SK',
+    bio: 'Committed to making Tigers Sports Club a premier Kabaddi organization in Texas.',
+    phone: '972-978-7622',
+    email: 'sandeep@tigerssportsclub.com'
+  },
+  {
+    id: 6,
+    name: 'Sokha Bhopal',
+    role: 'Founder & Co-organizer',
+    initials: 'SB',
+    bio: 'Active in community sports development and tournament organization for Tigers Sports Club.',
+    phone: '817-881-2128',
+    email: 'sokha@tigerssportsclub.com'
+  },
+  {
+    id: 7,
+    name: 'Hardaap S. Gill',
+    role: 'Founder & Co-organizer',
+    initials: 'HG',
+    bio: 'Dedicated to fostering athletic excellence and community spirit through Kabaddi.',
+    phone: '269-209-8369',
+    email: 'hardaap@tigerssportsclub.com'
+  },
+  {
+    id: 8,
+    name: 'Kamalpreet Ghuman',
+    role: 'Founder & Co-organizer',
+    initials: 'KG',
+    bio: 'Supporting Tigers Sports Club in promoting Kabaddi and building a vibrant sports community.',
+    phone: '602-777-0368',
+    email: 'kamalpreet@tigerssportsclub.com'
+  },
+  {
+    id: 9,
+    name: 'Sukhjhain S. Dhaliwal',
+    role: 'Founder & Co-organizer',
+    initials: 'SD',
+    bio: 'Passionate about community development and sports excellence in Dallas.',
+    phone: '214-797-2168',
+    email: 'sukhjhain@tigerssportsclub.com'
+  },
+  {
+    id: 10,
+    name: 'Balraj Sidhu',
+    role: 'Founder & Co-organizer',
+    initials: 'BS',
+    bio: 'Committed to making Tigers Sports Club a successful and thriving organization.',
+    phone: '214-448-4491',
+    email: 'balraj@tigerssportsclub.com'
+  },
+  {
+    id: 11,
+    name: 'Deepa Dhesi',
+    role: 'Founder & Co-organizer',
+    initials: 'DD',
+    bio: 'Supporting Tigers Sports Club in community engagement and event organization.',
+    phone: '945-269-8352',
+    email: 'deepa@tigerssportsclub.com'
+  },
+  {
+    id: 12,
+    name: 'Manit Ishal',
+    role: 'Founder & Co-organizer',
+    initials: 'MI',
+    bio: 'Contributing to the growth and success of Tigers Sports Club Dallas.',
+    phone: '214-662-6766',
+    email: 'manit@tigerssportsclub.com'
+  },
+  {
+    id: 13,
+    name: 'Gurmeet S. Cholia',
+    role: 'Founder & Co-organizer',
+    initials: 'GC',
+    bio: 'Dedicated to promoting Kabaddi and building a strong sports community in Dallas.',
+    phone: '214-455-2665',
+    email: 'gurmeet@tigerssportsclub.com'
   }
 ])
 </script>
