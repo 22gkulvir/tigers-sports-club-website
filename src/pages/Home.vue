@@ -2,31 +2,22 @@
   <div class="home">
     <!-- Hero Carousel Section -->
     <section class="hero-carousel">
-      <div class="carousel-wrapper">
-        <div class="carousel-container">
-          <div class="carousel-track infinite-scroll" :style="{ animationDuration: `${carouselDuration}s` }">
-            <img
-              v-for="(image, idx) in heroImages"
-              :key="`hero-${idx}`"
-              :src="image"
-              :alt="`Hero ${idx + 1}`"
-              class="hero-image"
-            />
-            <img
-              v-for="(image, idx) in heroImages"
-              :key="`hero-dup-${idx}`"
-              :src="image"
-              :alt="`Hero ${idx + 1}`"
-              class="hero-image"
-            />
-          </div>
+      <div class="carousel-container">
+        <img
+          :src="heroImages[currentHeroIndex]"
+          :alt="`Hero ${currentHeroIndex + 1}`"
+          class="hero-image"
+        />
+        <div class="carousel-buttons">
+          <button class="carousel-btn" @click="previousHero">❮</button>
+          <button class="carousel-btn" @click="nextHero">❯</button>
         </div>
         <div class="carousel-dots">
           <span
             v-for="(_, index) in heroImages"
             :key="index"
             :class="['dot', { active: index === currentHeroIndex }]"
-            @click="scrollToImage(index)"
+            @click="goToImage(index)"
           ></span>
         </div>
       </div>
@@ -109,7 +100,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 // Import images from assets
 import hero1 from '@/assets/images/hero/hero-1.jpg'
@@ -124,13 +115,45 @@ const heroImages = ref([
   hero3
 ])
 
-// Calculate animation duration based on number of images
-// 5 seconds per image for smooth scrolling
-const carouselDuration = ref(heroImages.value.length * 5)
+let autoAdvanceInterval = null
 
-const scrollToImage = (index) => {
-  currentHeroIndex.value = index
+const nextHero = () => {
+  currentHeroIndex.value = (currentHeroIndex.value + 1) % heroImages.value.length
+  resetAutoAdvance()
 }
+
+const previousHero = () => {
+  currentHeroIndex.value = (currentHeroIndex.value - 1 + heroImages.value.length) % heroImages.value.length
+  resetAutoAdvance()
+}
+
+const goToImage = (index) => {
+  currentHeroIndex.value = index
+  resetAutoAdvance()
+}
+
+const startAutoAdvance = () => {
+  autoAdvanceInterval = setInterval(() => {
+    currentHeroIndex.value = (currentHeroIndex.value + 1) % heroImages.value.length
+  }, 5000)
+}
+
+const resetAutoAdvance = () => {
+  if (autoAdvanceInterval) {
+    clearInterval(autoAdvanceInterval)
+  }
+  startAutoAdvance()
+}
+
+onMounted(() => {
+  startAutoAdvance()
+})
+
+onUnmounted(() => {
+  if (autoAdvanceInterval) {
+    clearInterval(autoAdvanceInterval)
+  }
+})
 
 // Announcements
 const announcements = ref([
@@ -233,6 +256,45 @@ const formatDate = (date) => {
   display: block;
   background-color: #000;
   flex-shrink: 0;
+}
+
+.carousel-buttons {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 var(--spacing-xl);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.carousel-btn {
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  pointer-events: auto;
+  font-weight: bold;
+}
+
+.carousel-btn:hover {
+  background: rgba(255, 140, 0, 0.8);
+  transform: scale(1.1);
+}
+
+.carousel-btn:active {
+  transform: scale(0.95);
 }
 
 .carousel-dots {
