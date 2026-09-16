@@ -155,19 +155,19 @@ const announcements = ref([
 
 // Founders
 const founders = ref([
-  { id: 1, name: 'Sabjit Gill', phone: '469-222-4038' },
-  { id: 2, name: 'Rajveer AK', phone: '501-266-4519' },
-  { id: 3, name: 'Kuldeep S. Dhillon', phone: '214-733-4307' },
+  { id: 1, name: 'Sarbjit Gill', phone: '469-222-4038' },
+  { id: 2, name: 'Rajveer AR', phone: '501-256-4519' },
+  { id: 3, name: 'Kuldeep Singh Dhillon', phone: '214-733-4307' },
   { id: 4, name: 'Babbu Khera', phone: '601-622-1011' },
   { id: 5, name: 'Sandeep Kang', phone: '972-978-7622' },
   { id: 6, name: 'Sokha Bhopal', phone: '817-881-2128' },
-  { id: 7, name: 'Hardaap S. Gill', phone: '269-209-8369' },
-  { id: 8, name: 'Kamalpreet Ghuman', phone: '602-777-0368' },
-  { id: 9, name: 'Sukhjhain S. Dhaliwal', phone: '214-797-2168' },
+  { id: 7, name: 'Hardeep Singh Gill', phone: '269-209-8369' },
+  { id: 8, name: 'Kanwalpreet Ghuman', phone: '602-777-0368' },
+  { id: 9, name: 'Sukhchain Singh Dhaliwal', phone: '214-797-2168' },
   { id: 10, name: 'Balraj Sidhu', phone: '214-448-4491' },
   { id: 11, name: 'Deepa Dhesi', phone: '945-269-8352' },
-  { id: 12, name: 'Manit Ishal', phone: '214-662-6766' },
-  { id: 13, name: 'Gurmeet S. Cholia', phone: '214-455-2665' }
+  { id: 12, name: 'Manjit Johal', phone: '214-662-6766' },
+  { id: 13, name: 'Gurmeet Singh Gholia', phone: '214-455-2665' }
 ])
 
 const formatDate = (date) => {
