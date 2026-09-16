@@ -50,20 +50,35 @@
     <section class="video-section">
       <div class="container">
         <h2>Watch Live & Highlights</h2>
-        <div class="video-grid">
-          <div class="video-card">
-            <div class="video-placeholder">
-              <span>📹</span>
-              <p>Live Stream</p>
-            </div>
-            <p class="video-desc">Watch live on September 26, 2026</p>
+
+        <!-- Live Stream -->
+        <div class="video-container">
+          <h3 class="video-title">🎬 Live Stream</h3>
+          <div class="youtube-embed">
+            <iframe
+              width="100%"
+              height="500"
+              :src="`https://www.youtube.com/embed/${liveVideoId}?autoplay=0&rel=0`"
+              title="Dallas Kabaddi Cup - Live Stream"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
           </div>
-          <div class="video-card">
-            <div class="video-placeholder">
-              <span>🎬</span>
-              <p>Past Matches</p>
+          <p class="video-info">Watch live matches of Dallas Kabaddi Cup 2026. Event Date: Saturday, September 26, 2026</p>
+        </div>
+
+        <!-- Past Matches -->
+        <div class="video-container">
+          <h3 class="video-title">📹 Past Matches & Highlights</h3>
+          <div class="video-grid">
+            <div v-for="match in pastMatches" :key="match.id" class="video-card">
+              <div class="video-placeholder">
+                <span>🏆</span>
+                <p>{{ match.title }}</p>
+              </div>
+              <p class="video-desc">{{ match.description }}</p>
             </div>
-            <p class="video-desc">Highlights from previous tournaments</p>
           </div>
         </div>
       </div>
@@ -154,6 +169,22 @@ onUnmounted(() => {
     clearInterval(autoAdvanceInterval)
   }
 })
+
+// YouTube Videos
+const liveVideoId = ref('Ibe9oQ2_19M') // From: https://www.youtube.com/live/Ibe9oQ2_19M
+
+const pastMatches = ref([
+  {
+    id: 1,
+    title: 'Previous Tournament',
+    description: 'Highlights from last year\'s Dallas Kabaddi Cup 2025'
+  },
+  {
+    id: 2,
+    title: 'Championship Match',
+    description: 'Finals highlights and best moments'
+  }
+])
 
 // Announcements
 const announcements = ref([
@@ -418,6 +449,54 @@ const formatDate = (date) => {
   padding: var(--spacing-lg);
   color: var(--text-secondary);
   text-align: center;
+}
+
+/* YouTube Embed Styles */
+.video-container {
+  margin-bottom: var(--spacing-3xl);
+}
+
+.video-title {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-lg);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.youtube-embed {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--bg-primary);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  margin-bottom: var(--spacing-xl);
+}
+
+.youtube-embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: var(--radius-lg);
+}
+
+.video-info {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  padding: var(--spacing-lg);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  border-left: 4px solid var(--color-primary-orange);
+  margin-bottom: var(--spacing-2xl);
 }
 
 /* Announcements Section */
