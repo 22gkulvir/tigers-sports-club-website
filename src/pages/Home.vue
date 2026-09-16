@@ -95,15 +95,13 @@
     <section class="founders">
       <div class="container">
         <h2>Meet Our Founders</h2>
-        <div class="founders-grid">
-          <div v-for="founder in founders" :key="founder.id" class="founder-card">
-            <div class="founder-avatar">{{ founder.initials }}</div>
-            <h3>{{ founder.name }}</h3>
-            <p class="role">{{ founder.role }}</p>
-            <a :href="`tel:${founder.phone}`" class="phone-link">{{ founder.phone }}</a>
-            <router-link to="/founders" class="view-link">View Profile →</router-link>
+        <div class="founders-list">
+          <div v-for="founder in founders" :key="founder.id" class="founder-item">
+            <div class="founder-name">{{ founder.name }}</div>
+            <a :href="`tel:${founder.phone}`" class="founder-phone">{{ founder.phone }}</a>
           </div>
         </div>
+        <p class="founders-link"><router-link to="/founders">View detailed founder profiles →</router-link></p>
       </div>
     </section>
   </div>
@@ -461,77 +459,61 @@ const formatDate = (date) => {
   margin-bottom: var(--spacing-2xl);
 }
 
-.founders-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--spacing-xl);
-}
-
-.founder-card {
-  background: var(--bg-primary);
-  padding: var(--spacing-lg);
+.founders-list {
+  background: var(--bg-secondary);
+  padding: var(--spacing-xl);
   border-radius: var(--radius-lg);
-  text-align: center;
-  box-shadow: var(--shadow-md);
-  transition: all 0.3s ease;
+  border-left: 4px solid var(--color-primary-orange);
+  max-width: 500px;
+  margin: 0 auto var(--spacing-xl);
 }
 
-.founder-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-}
-
-.founder-avatar {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto var(--spacing-lg);
-  background: linear-gradient(135deg, var(--color-primary-orange) 0%, var(--color-orange-dark) 100%);
-  color: white;
-  border-radius: 50%;
+.founder-item {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 1.5rem;
+  padding: var(--spacing-md) 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.founder-card h3 {
-  font-size: 1.1rem;
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-sm);
+.founder-item:last-child {
+  border-bottom: none;
+}
+
+.founder-name {
+  font-size: 1rem;
   font-weight: 600;
-}
-
-.role {
-  font-size: 0.9rem;
-  color: var(--color-primary-orange);
-  font-weight: 500;
-  margin-bottom: var(--spacing-md);
-}
-
-.phone-link {
-  display: block;
   color: var(--text-primary);
+  flex: 1;
+}
+
+.founder-phone {
+  font-size: 0.95rem;
+  color: var(--color-primary-orange);
   text-decoration: none;
   font-weight: 500;
-  margin-bottom: var(--spacing-md);
   transition: color 0.3s ease;
 }
 
-.phone-link:hover {
-  color: var(--color-primary-orange);
+.founder-phone:hover {
+  color: var(--color-orange-dark);
+  text-decoration: underline;
 }
 
-.view-link {
-  display: block;
+.founders-link {
+  text-align: center;
+}
+
+.founders-link a {
   color: var(--color-primary-orange);
   text-decoration: none;
   font-weight: 600;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease;
 }
 
-.view-link:hover {
+.founders-link a:hover {
   color: var(--color-orange-dark);
+  text-decoration: underline;
 }
 
 /* Responsive */
