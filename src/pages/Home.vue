@@ -746,13 +746,73 @@ const formatDate = (date) => {
     font-size: 1.2rem;
   }
 
-  .info-detail {
+  /* Event Info Mobile Styling */
+  .event-info {
+    padding: var(--spacing-2xl) var(--spacing-md);
+  }
+
+  .info-card {
+    padding: var(--spacing-lg);
+  }
+
+  .info-card h2 {
+    font-size: 1.4rem;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .detail {
     flex-direction: column;
     gap: var(--spacing-sm);
   }
 
+  .label {
+    font-size: 0.9rem;
+    min-width: auto;
+    margin-bottom: 2px;
+  }
+
+  .value {
+    font-size: 0.95rem;
+  }
+
   .founders-grid {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+/* Extra small devices (iPhone) */
+@media (max-width: 480px) {
+  .event-info {
+    padding: var(--spacing-lg) var(--spacing-sm);
+  }
+
+  .info-card {
+    padding: var(--spacing-md);
+    border-left-width: 3px;
+  }
+
+  .info-card h2 {
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .info-details {
+    gap: var(--spacing-md);
+  }
+
+  .detail {
+    gap: 0;
+  }
+
+  .label {
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+  }
+
+  .value {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    word-break: break-word;
   }
 }
 </style>
