@@ -28,24 +28,9 @@ const routes = [
     component: () => import('@/pages/Teams.vue'),
   },
   {
-    path: '/gallery',
-    name: 'Gallery',
-    component: () => import('@/pages/Gallery.vue'),
-  },
-  {
     path: '/sponsors',
     name: 'Sponsors',
     component: () => import('@/pages/Sponsors.vue'),
-  },
-  {
-    path: '/contact',
-    name: 'Contact',
-    component: () => import('@/pages/Contact.vue'),
-  },
-  {
-    path: '/founders',
-    name: 'Founders',
-    component: () => import('@/pages/Founders.vue'),
   },
 ]
 

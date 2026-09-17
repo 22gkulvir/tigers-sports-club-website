@@ -30,19 +30,31 @@
       </section>
 
       <section class="events-section">
-        <h2>Past Tournaments</h2>
-        <p>Coming soon - Past tournament results and highlights</p>
-      </section>
-
-      <section class="events-section">
-        <h2>Community Training</h2>
-        <p>Regular training sessions for players of all levels. Coming soon - Schedule details</p>
+        <h2>Other Activities</h2>
+        <div class="activities-grid">
+          <div v-for="activity in activities" :key="activity.id" class="activity-card">
+            <div class="activity-icon">{{ activity.icon }}</div>
+            <h3>{{ activity.name }}</h3>
+            <p>{{ activity.description }}</p>
+          </div>
+        </div>
       </section>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+
+const activities = ref([
+  { id: 1, name: 'Kids Race', icon: '🏃', description: 'Fun racing activities for children with prizes and recognition' },
+  { id: 2, name: 'Spoon Race', icon: '🥄', description: 'Traditional spoon race competition for all age groups' },
+  { id: 3, name: 'Kabaddi Training', icon: '🏋️', description: 'Professional coaching and training sessions for players of all levels' },
+  { id: 4, name: 'Community Events', icon: '🎉', description: 'Social gatherings and community engagement activities' },
+  { id: 5, name: 'Youth Development', icon: '👨‍🎓', description: 'Programs to develop young talent in Kabaddi and sports' },
+  { id: 6, name: 'Friendly Matches', icon: '⚽', description: 'Inter-club friendly matches and practice tournaments' }
+])
+</script>
 
 <style scoped>
 .events-page {
@@ -113,6 +125,49 @@
 .btn:hover {
   background: var(--color-orange-dark);
   transform: translateY(-2px);
+}
+
+.activities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.activity-card {
+  background: var(--bg-primary);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  border-top: 3px solid var(--color-primary-orange);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.activity-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(255, 140, 0, 0.1);
+}
+
+.activity-icon {
+  font-size: 2.5rem;
+  display: block;
+}
+
+.activity-card h3 {
+  color: var(--color-primary-orange);
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+.activity-card p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
 }
 
 @media (max-width: 768px) {

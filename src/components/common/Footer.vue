@@ -28,9 +28,9 @@
           <h3 class="footer-section-title">Quick Links</h3>
           <ul class="footer-link-list">
             <li><router-link to="/" class="footer-link">Home</router-link></li>
-            <li><router-link to="/founders" class="footer-link">Founders</router-link></li>
+            <li><router-link to="/about" class="footer-link">About</router-link></li>
             <li><router-link to="/events" class="footer-link">Events</router-link></li>
-            <li><router-link to="/contact" class="footer-link">Contact</router-link></li>
+            <li><router-link to="/sponsors" class="footer-link">Sponsors</router-link></li>
           </ul>
         </div>
 

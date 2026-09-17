@@ -40,14 +40,43 @@
       </section>
 
       <section class="about-section">
-        <h2>Leadership Team</h2>
-        <p>Coming soon - Team members and leadership profiles</p>
+        <h2>Our Founders</h2>
+        <p class="section-intro">Meet the visionaries behind Tigers Sports Club Dallas</p>
+        <div class="founders-grid">
+          <div v-for="founder in founders" :key="founder.id" class="founder-card">
+            <div class="founder-avatar">{{ founder.initials }}</div>
+            <div class="founder-info">
+              <h3>{{ founder.name }}</h3>
+              <p class="role">{{ founder.role }}</p>
+              <p class="bio">{{ founder.bio }}</p>
+              <a :href="`tel:${founder.phone}`" class="contact-link">📞 {{ founder.phone }}</a>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+
+const founders = ref([
+  { id: 1, name: 'Sarbjit Gill', role: 'Founder & Co-organizer', initials: 'SG', bio: 'One of the founding members of Tigers Sports Club Dallas, dedicated to promoting Kabaddi in the community.', phone: '469-222-4038' },
+  { id: 2, name: 'Rajveer AR', role: 'Founder & Co-organizer', initials: 'RA', bio: 'Passionate about sports and community engagement, instrumental in organizing tournaments and events.', phone: '501-256-4519' },
+  { id: 3, name: 'Kuldeep Singh Dhillon', role: 'Founder & Co-organizer', initials: 'KD', bio: 'Dedicated to developing Kabaddi talent in Dallas and building a strong sporting community.', phone: '214-733-4307' },
+  { id: 4, name: 'Babbu Khera', role: 'Founder & Co-organizer', initials: 'BK', bio: 'Supporting the vision of promoting traditional sports and community values through Tigers Sports Club.', phone: '601-622-1011' },
+  { id: 5, name: 'Sandeep Kang', role: 'Founder & Co-organizer', initials: 'SK', bio: 'Committed to making Tigers Sports Club a premier Kabaddi organization in Texas.', phone: '972-978-7622' },
+  { id: 6, name: 'Sokha Bhopal', role: 'Founder & Co-organizer', initials: 'SB', bio: 'Active in community sports development and tournament organization for Tigers Sports Club.', phone: '817-881-2128' },
+  { id: 7, name: 'Hardeep Singh Gill', role: 'Founder & Co-organizer', initials: 'HG', bio: 'Dedicated to fostering athletic excellence and community spirit through Kabaddi.', phone: '269-209-8369' },
+  { id: 8, name: 'Kanwalpreet Ghuman', role: 'Founder & Co-organizer', initials: 'KG', bio: 'Supporting Tigers Sports Club in promoting Kabaddi and building a vibrant sports community.', phone: '602-777-0368' },
+  { id: 9, name: 'Sukhchain Singh Dhaliwal', role: 'Founder & Co-organizer', initials: 'SD', bio: 'Passionate about community development and sports excellence in Dallas.', phone: '214-797-2168' },
+  { id: 10, name: 'Balraj Sidhu', role: 'Founder & Co-organizer', initials: 'BS', bio: 'Committed to making Tigers Sports Club a successful and thriving organization.', phone: '214-448-4491' },
+  { id: 11, name: 'Deepa Dhesi', role: 'Founder & Co-organizer', initials: 'DD', bio: 'Supporting Tigers Sports Club in community engagement and event organization.', phone: '945-269-8352' },
+  { id: 12, name: 'Manjit Johal', role: 'Founder & Co-organizer', initials: 'MJ', bio: 'Contributing to the growth and success of Tigers Sports Club Dallas.', phone: '214-662-6766' },
+  { id: 13, name: 'Gurmeet Singh Gholia', role: 'Founder & Co-organizer', initials: 'GS', bio: 'Dedicated to promoting Kabaddi and building a strong sports community in Dallas.', phone: '214-455-2665' }
+])
+</script>
 
 <style scoped>
 .about-page {
@@ -116,6 +145,89 @@
 .card p {
   color: var(--text-primary);
   line-height: 1.6;
+}
+
+.section-intro {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-2xl) !important;
+  font-style: italic;
+}
+
+.founders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-2xl);
+}
+
+.founder-card {
+  background: var(--bg-secondary);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  border-left: 4px solid var(--color-primary-orange);
+  display: flex;
+  gap: var(--spacing-lg);
+  transition: all 0.3s ease;
+}
+
+.founder-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(255, 140, 0, 0.1);
+}
+
+.founder-avatar {
+  width: 80px;
+  height: 80px;
+  min-width: 80px;
+  background: linear-gradient(135deg, var(--color-primary-orange) 0%, var(--color-orange-dark) 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.founder-info {
+  flex: 1;
+}
+
+.founder-info h3 {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+  font-weight: 600;
+}
+
+.founder-info .role {
+  color: var(--color-primary-orange);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.founder-info .bio {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-md);
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--color-primary-orange);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.contact-link:hover {
+  color: var(--color-orange-dark);
+  text-decoration: underline;
 }
 
 @media (max-width: 768px) {

@@ -25,17 +25,8 @@
           <router-link to="/teams" :class="['nav-link', { active: route.path === '/teams' }]">
             Teams
           </router-link>
-          <router-link to="/gallery" :class="['nav-link', { active: route.path === '/gallery' }]">
-            Gallery
-          </router-link>
           <router-link to="/sponsors" :class="['nav-link', { active: route.path === '/sponsors' }]">
             Sponsors
-          </router-link>
-          <router-link to="/contact" :class="['nav-link', { active: route.path === '/contact' }]">
-            Contact
-          </router-link>
-          <router-link to="/founders" :class="['nav-link', { active: route.path === '/founders' }]">
-            Founders
           </router-link>
         </nav>
 
@@ -61,17 +52,8 @@
         <router-link to="/teams" class="mobile-nav-link" @click="mobileMenuOpen = false">
           Teams
         </router-link>
-        <router-link to="/gallery" class="mobile-nav-link" @click="mobileMenuOpen = false">
-          Gallery
-        </router-link>
         <router-link to="/sponsors" class="mobile-nav-link" @click="mobileMenuOpen = false">
           Sponsors
-        </router-link>
-        <router-link to="/contact" class="mobile-nav-link" @click="mobileMenuOpen = false">
-          Contact
-        </router-link>
-        <router-link to="/founders" class="mobile-nav-link" @click="mobileMenuOpen = false">
-          Founders
         </router-link>
       </nav>
     </div>

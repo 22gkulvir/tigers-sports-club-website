@@ -117,19 +117,6 @@
       </div>
     </section>
 
-    <!-- Founders Section -->
-    <section class="founders">
-      <div class="container">
-        <h2>Meet Our Founders</h2>
-        <div class="founders-list">
-          <div v-for="founder in founders" :key="founder.id" class="founder-item">
-            <div class="founder-name">{{ founder.name }}</div>
-            <a :href="`tel:${founder.phone}`" class="founder-phone">{{ founder.phone }}</a>
-          </div>
-        </div>
-        <p class="founders-link"><router-link to="/founders">View detailed founder profiles →</router-link></p>
-      </div>
-    </section>
   </div>
 </template>
 
