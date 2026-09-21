@@ -237,7 +237,7 @@ const founders = ref([
   { id: 2, name: 'Rajveer AR', phone: '501-256-4519' },
   { id: 3, name: 'Sandeep Kang', phone: '972-978-7622' },
   { id: 4, name: 'Gurmeet Singh Gholia', phone: '214-455-2665' },
-  { id: 5, name: 'Sokha Bhopal', phone: '817-881-2128' },
+  { id: 5, name: 'Santokh Singh', phone: '817-881-2128' },
   { id: 6, name: 'Hardeep Singh Gill', phone: '269-209-8369' },
   { id: 7, name: 'Babbu Khera', phone: '601-622-1011' },
   { id: 8, name: 'Kanwalpreet Ghuman', phone: '602-777-0368' },
