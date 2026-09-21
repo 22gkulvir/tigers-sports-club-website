@@ -9,13 +9,19 @@
       <section class="about-section">
         <h2>Our Story</h2>
         <p>
-          Tigers Sports Club Dallas was founded with a mission to bring professional Kabaddi to Dallas,
-          Texas. We are dedicated to promoting this ancient Indian sport and building a strong community
-          of athletes and enthusiasts.
+          Tigers Sports Club was founded in Dallas by thirteen friends raised on circle style Kabaddi —
+          the open-ground game of Punjab, played on both sides of the border and carried wherever Punjabi
+          families have settled. We wanted it played here the way it is played back home: no mat, no
+          clock-watching, just a circle, a raider, and the crowd pressed in around it.
         </p>
         <p>
-          Our club has grown to over 162 followers on Facebook and continues to expand our reach in the
-          Dallas metropolitan area. We organize tournaments, training sessions, and community events.
+          We held our first Dallas Kabaddi Cup in 2025. Players and fans called it the best Kabaddi cup
+          in America — on our first attempt. That came down to the players who showed up, the families
+          who ringed the ground all day, and the sponsors who backed a club that had yet to prove
+          anything.
+        </p>
+        <p>
+          The 2026 Cup is the next one, and we are building it to last.
         </p>
       </section>
 
@@ -25,15 +31,16 @@
           <div class="card">
             <h3>Our Mission</h3>
             <p>
-              To promote professional Kabaddi in Dallas and provide opportunities for athletes to
-              develop their skills in a competitive environment.
+              To grow circle style Kabaddi across North America by hosting tournaments worthy of the
+              game, and to stand behind the players who make it — from those who have played since
+              childhood to anyone stepping into the circle for the first time.
             </p>
           </div>
           <div class="card">
             <h3>Our Vision</h3>
             <p>
-              To establish Tigers Sports Club as the premier Kabaddi organization in Texas and create
-              a lasting legacy of excellence in sports.
+              To host the biggest and best Kabaddi cups in North America, and to be the club every
+              serious player wants to compete in and every new player can begin at.
             </p>
           </div>
         </div>
