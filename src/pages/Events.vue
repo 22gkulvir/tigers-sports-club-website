@@ -15,18 +15,18 @@
           </div>
           <div class="detail-item">
             <span class="label">📍 Location:</span>
-            <span>Southfork Ranch, 3700 Hogge Dr, Parker, TX 75002</span>
+            <a
+              class="map-link"
+              href="https://www.google.com/maps/search/?api=1&query=Southfork%20Ranch%2C%203700%20Hogge%20Dr%2C%20Parker%2C%20TX%2075002"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Southfork Ranch, 3700 Hogge Dr, Parker, TX 75002</a>
           </div>
           <div class="detail-item">
             <span class="label">🎯 Format:</span>
-            <span>8+ Team Tournament</span>
-          </div>
-          <div class="detail-item">
-            <span class="label">👥 Participants:</span>
-            <span>12 Matches</span>
+            <span>4 Team Tournament</span>
           </div>
         </div>
-        <button class="btn btn-primary">Register Team</button>
       </section>
 
       <section class="events-section">
@@ -110,20 +110,23 @@ const activities = ref([
   min-width: 120px;
 }
 
-.btn {
-  padding: var(--spacing-md) var(--spacing-xl);
-  background: var(--color-primary-orange);
-  color: var(--text-light);
-  border: none;
-  border-radius: var(--radius-lg);
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.map-link {
+  color: var(--color-primary-orange);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 
-.btn:hover {
-  background: var(--color-orange-dark);
-  transform: translateY(-2px);
+.map-link:hover {
+  color: var(--color-orange-dark);
+}
+
+.map-link:focus-visible {
+  outline: 2px solid var(--color-primary-orange);
+  outline-offset: 3px;
 }
 
 .activities-grid {
