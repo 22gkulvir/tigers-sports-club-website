@@ -12,10 +12,10 @@
           <span class="tier-badge chief-guest">Chief Guest</span>
         </h2>
         <div class="static-sponsor-container">
-          <div class="static-sponsor-card">
+          <button type="button" class="static-sponsor-card" @click="openLightbox(chiefGuest, chiefGuestName)">
             <img :src="chiefGuest" :alt="chiefGuestName" class="sponsor-logo" />
             <p class="sponsor-name">{{ chiefGuestName }}</p>
-          </div>
+          </button>
         </div>
       </section>
 
@@ -25,107 +25,46 @@
           <span class="tier-badge grand-sponsor">Grand Sponsor</span>
         </h2>
         <div class="static-sponsor-container">
-          <div class="static-sponsor-card">
+          <button type="button" class="static-sponsor-card" @click="openLightbox(grandSponsor, grandSponsorName)">
             <img :src="grandSponsor" :alt="grandSponsorName" class="sponsor-logo" />
             <p class="sponsor-name">{{ grandSponsorName }}</p>
-          </div>
+          </button>
         </div>
       </section>
 
-      <!-- Diamond Tier -->
-      <section v-if="diamondSponsors.length > 0" class="sponsor-tier">
+      <!-- Tier carousels -->
+      <section v-for="tier in tiers" :key="tier.key" v-show="tier.items.length > 0" class="sponsor-tier">
         <h2 class="tier-title">
-          <span class="tier-badge diamond">Diamond Sponsors</span>
+          <span :class="['tier-badge', tier.key]">{{ tier.label }}</span>
         </h2>
         <div class="carousel-wrapper">
           <div class="sponsors-carousel">
-            <div class="carousel-track infinite-scroll" :style="{ animationDuration: `${diamondDuration}s` }">
-              <div v-for="(sponsor, idx) in carouselSponsors.diamond" :key="`diamond-${idx}`" class="sponsor-card diamond">
-                <img :src="sponsor" :alt="`Diamond Sponsor ${idx + 1}`" class="sponsor-logo" />
-              </div>
-              <div v-for="(sponsor, idx) in carouselSponsors.diamond" :key="`diamond-dup-${idx}`" class="sponsor-card diamond">
-                <img :src="sponsor" :alt="`Diamond Sponsor ${idx + 1}`" class="sponsor-logo" />
-              </div>
+            <div class="carousel-track infinite-scroll" :style="{ animationDuration: `${tier.duration}s` }">
+              <button
+                v-for="(sponsor, idx) in tier.loop"
+                :key="`${tier.key}-${idx}`"
+                type="button"
+                :class="['sponsor-card', tier.key]"
+                @click="openLightbox(sponsor, `${tier.singular} ${(idx % tier.items.length) + 1}`)"
+              >
+                <img
+                  :src="sponsor"
+                  :alt="`${tier.singular} ${(idx % tier.items.length) + 1}`"
+                  class="sponsor-logo"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </button>
             </div>
           </div>
         </div>
       </section>
+    </div>
 
-      <!-- Platinum Tier -->
-      <section v-if="platinumSponsors.length > 0" class="sponsor-tier">
-        <h2 class="tier-title">
-          <span class="tier-badge platinum">Platinum Sponsors</span>
-        </h2>
-        <div class="carousel-wrapper">
-          <div class="sponsors-carousel">
-            <div class="carousel-track infinite-scroll" :style="{ animationDuration: `${platinumDuration}s` }">
-              <div v-for="(sponsor, idx) in carouselSponsors.platinum" :key="`platinum-${idx}`" class="sponsor-card platinum">
-                <img :src="sponsor" :alt="`Platinum Sponsor ${idx + 1}`" class="sponsor-logo" />
-              </div>
-              <div v-for="(sponsor, idx) in carouselSponsors.platinum" :key="`platinum-dup-${idx}`" class="sponsor-card platinum">
-                <img :src="sponsor" :alt="`Platinum Sponsor ${idx + 1}`" class="sponsor-logo" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Gold Tier -->
-      <section v-if="goldSponsors.length > 0" class="sponsor-tier">
-        <h2 class="tier-title">
-          <span class="tier-badge gold">Gold Sponsors</span>
-        </h2>
-        <div class="carousel-wrapper">
-          <div class="sponsors-carousel">
-            <div class="carousel-track infinite-scroll" :style="{ animationDuration: `${goldDuration}s` }">
-              <div v-for="(sponsor, idx) in carouselSponsors.gold" :key="`gold-${idx}`" class="sponsor-card gold">
-                <img :src="sponsor" :alt="`Gold Sponsor ${idx + 1}`" class="sponsor-logo" />
-              </div>
-              <div v-for="(sponsor, idx) in carouselSponsors.gold" :key="`gold-dup-${idx}`" class="sponsor-card gold">
-                <img :src="sponsor" :alt="`Gold Sponsor ${idx + 1}`" class="sponsor-logo" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Proud Tier -->
-      <section v-if="proudSponsors.length > 0" class="sponsor-tier">
-        <h2 class="tier-title">
-          <span class="tier-badge proud">Proud Supporters</span>
-        </h2>
-        <div class="carousel-wrapper">
-          <div class="sponsors-carousel">
-            <div class="carousel-track infinite-scroll" :style="{ animationDuration: `${proudDuration}s` }">
-              <div v-for="(sponsor, idx) in carouselSponsors.proud" :key="`proud-${idx}`" class="sponsor-card proud">
-                <img :src="sponsor" :alt="`Proud Supporter ${idx + 1}`" class="sponsor-logo" />
-              </div>
-              <div v-for="(sponsor, idx) in carouselSponsors.proud" :key="`proud-dup-${idx}`" class="sponsor-card proud">
-                <img :src="sponsor" :alt="`Proud Supporter ${idx + 1}`" class="sponsor-logo" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Silver Tier -->
-      <section v-if="silverSponsors.length > 0" class="sponsor-tier">
-        <h2 class="tier-title">
-          <span class="tier-badge silver">Silver Sponsors</span>
-        </h2>
-        <div class="carousel-wrapper">
-          <div class="sponsors-carousel">
-            <div class="carousel-track infinite-scroll" :style="{ animationDuration: `${silverDuration}s` }">
-              <div v-for="(sponsor, idx) in carouselSponsors.silver" :key="`silver-${idx}`" class="sponsor-card silver">
-                <img :src="sponsor" :alt="`Silver Sponsor ${idx + 1}`" class="sponsor-logo" />
-              </div>
-              <div v-for="(sponsor, idx) in carouselSponsors.silver" :key="`silver-dup-${idx}`" class="sponsor-card silver">
-                <img :src="sponsor" :alt="`Silver Sponsor ${idx + 1}`" class="sponsor-logo" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    <!-- Poster lightbox -->
+    <div v-if="lightbox" class="lightbox" role="dialog" aria-modal="true" :aria-label="lightbox.label" @click="closeLightbox">
+      <button type="button" class="lightbox-close" aria-label="Close" @click.stop="closeLightbox">&times;</button>
+      <img :src="lightbox.src" :alt="lightbox.label" class="lightbox-img" @click.stop />
     </div>
   </div>
 </template>
@@ -138,19 +77,16 @@ const chiefGuestName = ref('Chief Guest')
 const grandSponsor = ref(null)
 const grandSponsorName = ref('Grand Sponsor')
 
-const diamondSponsors = ref([])
-const goldSponsors = ref([])
-const platinumSponsors = ref([])
-const silverSponsors = ref([])
-const proudSponsors = ref([])
+// Order here is the order the tiers appear on the page.
+const TIERS = [
+  { key: 'diamond', label: 'Diamond Sponsors', singular: 'Diamond Sponsor' },
+  { key: 'platinum', label: 'Platinum Sponsors', singular: 'Platinum Sponsor' },
+  { key: 'gold', label: 'Gold Sponsors', singular: 'Gold Sponsor' },
+  { key: 'proud', label: 'Proud Supporters', singular: 'Proud Supporter' },
+  { key: 'silver', label: 'Silver Sponsors', singular: 'Silver Sponsor' },
+]
 
-const carouselSponsors = ref({
-  diamond: [],
-  gold: [],
-  platinum: [],
-  silver: [],
-  proud: []
-})
+const sponsorsByTier = ref(Object.fromEntries(TIERS.map((t) => [t.key, []])))
 
 const viewportWidth = ref(window.innerWidth)
 
@@ -160,14 +96,37 @@ const calculateDuration = (count) => {
   return Math.max(count * secondsPerCard, 10)
 }
 
-const diamondDuration = computed(() => calculateDuration(diamondSponsors.value.length))
-const goldDuration = computed(() => calculateDuration(goldSponsors.value.length))
-const platinumDuration = computed(() => calculateDuration(platinumSponsors.value.length))
-const silverDuration = computed(() => calculateDuration(silverSponsors.value.length))
-const proudDuration = computed(() => calculateDuration(proudSponsors.value.length))
+const tiers = computed(() =>
+  TIERS.map((tier) => {
+    const items = sponsorsByTier.value[tier.key] || []
+    return {
+      ...tier,
+      items,
+      // The track is duplicated so the marquee can wrap without a visible seam.
+      loop: [...items, ...items],
+      duration: calculateDuration(items.length),
+    }
+  })
+)
 
 const handleResize = () => {
   viewportWidth.value = window.innerWidth
+}
+
+const lightbox = ref(null)
+
+const openLightbox = (src, label) => {
+  lightbox.value = { src, label }
+  document.body.style.overflow = 'hidden'
+}
+
+const closeLightbox = () => {
+  lightbox.value = null
+  document.body.style.overflow = ''
+}
+
+const onKeydown = (e) => {
+  if (e.key === 'Escape' && lightbox.value) closeLightbox()
 }
 
 // Dynamically import sponsor images from folders
@@ -186,39 +145,31 @@ const loadSponsorImages = async () => {
     grandSponsor.value = grandSponsorImages[0]
   }
 
-  // Load Diamond sponsors
-  const diamondModules = import.meta.glob('@/assets/images/sponsors/diamond/*.{jpg,jpeg,png}', { eager: true })
-  carouselSponsors.value.diamond = Object.values(diamondModules).map((m) => m.default)
-  diamondSponsors.value = carouselSponsors.value.diamond
+  // Vite needs one literal glob per directory, so the tiers are listed out here
+  // rather than built from TIERS at runtime.
+  const byTier = {
+    diamond: import.meta.glob('@/assets/images/sponsors/diamond/*.{jpg,jpeg,png}', { eager: true }),
+    platinum: import.meta.glob('@/assets/images/sponsors/platinum/*.{jpg,jpeg,png}', { eager: true }),
+    gold: import.meta.glob('@/assets/images/sponsors/gold/*.{jpg,jpeg,png}', { eager: true }),
+    proud: import.meta.glob('@/assets/images/sponsors/proud/*.{jpg,jpeg,png}', { eager: true }),
+    silver: import.meta.glob('@/assets/images/sponsors/silver/*.{jpg,jpeg,png}', { eager: true }),
+  }
 
-  // Load Gold sponsors
-  const goldModules = import.meta.glob('@/assets/images/sponsors/gold/*.{jpg,jpeg,png}', { eager: true })
-  carouselSponsors.value.gold = Object.values(goldModules).map((m) => m.default)
-  goldSponsors.value = carouselSponsors.value.gold
-
-  // Load Platinum sponsors
-  const platinumModules = import.meta.glob('@/assets/images/sponsors/platinum/*.{jpg,jpeg,png}', { eager: true })
-  carouselSponsors.value.platinum = Object.values(platinumModules).map((m) => m.default)
-  platinumSponsors.value = carouselSponsors.value.platinum
-
-  // Load Silver sponsors
-  const silverModules = import.meta.glob('@/assets/images/sponsors/silver/*.{jpg,jpeg,png}', { eager: true })
-  carouselSponsors.value.silver = Object.values(silverModules).map((m) => m.default)
-  silverSponsors.value = carouselSponsors.value.silver
-
-  // Load Proud supporters
-  const proudModules = import.meta.glob('@/assets/images/sponsors/proud/*.{jpg,jpeg,png}', { eager: true })
-  carouselSponsors.value.proud = Object.values(proudModules).map((m) => m.default)
-  proudSponsors.value = carouselSponsors.value.proud
+  sponsorsByTier.value = Object.fromEntries(
+    Object.entries(byTier).map(([key, modules]) => [key, Object.values(modules).map((m) => m.default)])
+  )
 }
 
 onMounted(() => {
   loadSponsorImages()
   window.addEventListener('resize', handleResize)
+  window.addEventListener('keydown', onKeydown)
 })
 
 onUnmounted(() => {
   window.removeEventListener('resize', handleResize)
+  window.removeEventListener('keydown', onKeydown)
+  document.body.style.overflow = ''
 })
 </script>
 
@@ -368,11 +319,19 @@ onUnmounted(() => {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   border: 2px solid transparent;
+  font: inherit;
+  cursor: zoom-in;
 }
 
 .sponsor-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.sponsor-card:focus-visible,
+.static-sponsor-card:focus-visible {
+  outline: 3px solid var(--color-primary-orange);
+  outline-offset: 3px;
 }
 
 /* Static Sponsor Containers */
@@ -395,6 +354,8 @@ onUnmounted(() => {
   max-width: 350px;
   transition: all 0.3s ease;
   border: 3px solid var(--color-primary-orange);
+  font: inherit;
+  cursor: zoom-in;
 }
 
 .static-sponsor-card:hover {
@@ -510,5 +471,60 @@ onUnmounted(() => {
     flex: 0 0 120px;
     height: 100px;
   }
+}
+
+/* Poster lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-lg);
+  padding-top: max(var(--spacing-lg), env(safe-area-inset-top, 0px));
+  padding-bottom: max(var(--spacing-lg), env(safe-area-inset-bottom, 0px));
+  cursor: zoom-out;
+  animation: lightbox-in 0.18s ease;
+}
+
+@keyframes lightbox-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  cursor: default;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: max(var(--spacing-md), env(safe-area-inset-top, 0px));
+  right: var(--spacing-md);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-close:hover {
+  background: var(--color-primary-orange);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox { animation: none; }
 }
 </style>

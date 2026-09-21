@@ -5,8 +5,10 @@
       <div class="carousel-container">
         <img
           :src="heroImages[currentHeroIndex]"
-          :alt="`Hero ${currentHeroIndex + 1}`"
+          :alt="`Dallas Kabaddi Cup — photo ${currentHeroIndex + 1} of ${heroImages.length}`"
           class="hero-image"
+          fetchpriority="high"
+          decoding="async"
         />
         <div class="carousel-buttons">
           <button class="carousel-btn" @click="previousHero">❮</button>
@@ -368,7 +370,8 @@ const formatDate = (date) => {
 .hero-image {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
   display: block;
   background-color: #000;
   flex-shrink: 0;
@@ -803,8 +806,8 @@ const formatDate = (date) => {
   }
 
   .carousel-btn {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     font-size: 1.2rem;
   }
 

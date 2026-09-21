@@ -257,5 +257,48 @@ const founders = ref([
   .about-section h2 {
     font-size: 1.5rem;
   }
+
+  /* Two compact columns instead of 13 full-width cards, which ran to roughly
+     eight screens of scrolling. The bio is dropped here; name, photo and a
+     tappable number are what this list is actually used for. */
+  .founders-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+
+  .founder-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--spacing-md);
+    gap: var(--spacing-sm);
+    border-left: none;
+    border-top: 3px solid var(--color-primary-orange);
+  }
+
+  .founder-avatar {
+    width: 64px;
+    height: 64px;
+    min-width: 64px;
+  }
+
+  .founder-info h3 {
+    font-size: 0.92rem;
+    line-height: 1.25;
+  }
+
+  .founder-info .role {
+    font-size: 0.72rem;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .founder-info .bio {
+    display: none;
+  }
+
+  .contact-link {
+    font-size: 0.85rem;
+    min-height: 44px;
+  }
 }
 </style>

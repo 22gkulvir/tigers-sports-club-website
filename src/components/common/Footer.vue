@@ -86,8 +86,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: #1877F2;
   color: #fff;
@@ -121,6 +121,15 @@
   transition: color 0.2s ease;
   margin: 0;
   word-break: break-word;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.footer-link:focus-visible,
+.social-icon:focus-visible {
+  outline: 2px solid var(--color-primary-orange);
+  outline-offset: 3px;
 }
 
 .footer-link:hover {

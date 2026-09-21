@@ -31,15 +31,22 @@
         </nav>
 
         <!-- Mobile Menu Button -->
-        <button class="mobile-menu-btn" @click="mobileMenuOpen = !mobileMenuOpen">
-          <span></span>
-          <span></span>
-          <span></span>
+        <button
+          type="button"
+          :class="['mobile-menu-btn', { open: mobileMenuOpen }]"
+          :aria-expanded="mobileMenuOpen"
+          :aria-label="mobileMenuOpen ? 'Close menu' : 'Open menu'"
+          aria-controls="mobile-nav"
+          @click="mobileMenuOpen = !mobileMenuOpen"
+        >
+          <span class="bar bar-top"></span>
+          <span class="bar bar-mid"></span>
+          <span class="bar bar-bottom"></span>
         </button>
       </div>
 
       <!-- Mobile Navigation -->
-      <nav v-if="mobileMenuOpen" class="mobile-navigation">
+      <nav v-if="mobileMenuOpen" id="mobile-nav" class="mobile-navigation">
         <router-link to="/" class="mobile-nav-link" @click="mobileMenuOpen = false">
           Home
         </router-link>
@@ -157,19 +164,47 @@ const mobileMenuOpen = ref(false)
 .mobile-menu-btn {
   display: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 5px;
   background: none;
   border: none;
   cursor: pointer;
   padding: var(--spacing-md);
+  min-width: 44px;
+  min-height: 44px;
 }
 
-.mobile-menu-btn span {
+.mobile-menu-btn .bar {
   width: 25px;
   height: 3px;
   background: var(--color-primary-orange);
   border-radius: 2px;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+/* Collapse the three bars into an X while the menu is open */
+.mobile-menu-btn.open .bar-top {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.mobile-menu-btn.open .bar-mid {
+  opacity: 0;
+}
+
+.mobile-menu-btn.open .bar-bottom {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.mobile-menu-btn:focus-visible {
+  outline: 2px solid var(--color-primary-orange);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu-btn .bar {
+    transition: none;
+  }
 }
 
 /* Mobile Navigation */
