@@ -259,7 +259,8 @@ const mobileMenuOpen = ref(false)
   }
 
   .logo-text p {
-    display: none;
+    font-size: 0.7rem;
+    line-height: 1.2;
   }
 }
 </style>
