@@ -276,17 +276,17 @@ onMounted(() => {
 }
 
 .tier-badge.chief-guest {
-  background: linear-gradient(135deg, #2a2a2a 0%, #000000 100%);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-  color: var(--color-primary-orange);
-  border: 2px solid var(--color-primary-orange);
+  background: linear-gradient(135deg, #FF6B6B 0%, #EE5A52 100%);
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4), 0 0 25px rgba(255, 107, 107, 0.2);
+  color: white;
+  border: none;
 }
 
 .tier-badge.grand-sponsor {
-  background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
-  box-shadow: 0 4px 15px rgba(255, 140, 0, 0.4);
-  color: var(--color-primary-orange);
-  border: 2px solid var(--color-primary-orange);
+  background: linear-gradient(135deg, #00C851 0%, #00A340 100%);
+  box-shadow: 0 4px 15px rgba(0, 200, 81, 0.4), 0 0 25px rgba(0, 200, 81, 0.2);
+  color: white;
+  border: none;
 }
 
 .tier-badge.diamond {
