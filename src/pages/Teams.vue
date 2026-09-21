@@ -13,12 +13,6 @@
 </template>
 
 <style scoped>
-.page-header {
-  background: linear-gradient(135deg, var(--color-primary-orange) 0%, var(--color-orange-dark) 100%);
-  color: var(--text-light);
-  padding: 60px var(--spacing-lg);
-  text-align: center;
-}
 
 .container {
   max-width: 1200px;

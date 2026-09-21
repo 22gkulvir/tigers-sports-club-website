@@ -86,23 +86,6 @@ const founders = ref([
   min-height: calc(100vh - 80px);
 }
 
-.page-header {
-  background: linear-gradient(135deg, var(--color-primary-orange) 0%, var(--color-orange-dark) 100%);
-  color: var(--text-light);
-  padding: 60px var(--spacing-lg);
-  text-align: center;
-}
-
-.page-header h1 {
-  font-size: 2.5rem;
-  margin-bottom: var(--spacing-md);
-}
-
-.page-header p {
-  font-size: 1.1rem;
-  opacity: 0.9;
-}
-
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -250,9 +233,6 @@ const founders = ref([
 }
 
 @media (max-width: 768px) {
-  .page-header h1 {
-    font-size: 1.8rem;
-  }
 
   .about-section h2 {
     font-size: 1.5rem;

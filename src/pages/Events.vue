@@ -60,18 +60,6 @@ const activities = ref([
   min-height: calc(100vh - 80px);
 }
 
-.page-header {
-  background: linear-gradient(135deg, var(--color-primary-orange) 0%, var(--color-orange-dark) 100%);
-  color: var(--text-light);
-  padding: 60px var(--spacing-lg);
-  text-align: center;
-}
-
-.page-header h1 {
-  font-size: 2.5rem;
-  margin-bottom: var(--spacing-md);
-}
-
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -172,9 +160,4 @@ const activities = ref([
   margin: 0;
 }
 
-@media (max-width: 768px) {
-  .page-header h1 {
-    font-size: 1.8rem;
-  }
-}
 </style>
