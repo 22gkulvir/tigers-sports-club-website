@@ -266,13 +266,17 @@ onMounted(() => {
 }
 
 .tier-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 240px;
   padding: var(--spacing-md) var(--spacing-xl);
   border-radius: var(--radius-lg);
   color: white;
   font-weight: 700;
   font-size: 1.1rem;
   letter-spacing: 0.5px;
+  height: 50px;
 }
 
 .tier-badge.chief-guest {
