@@ -39,7 +39,11 @@
             </div>
             <div class="detail">
               <span class="label">🎯 Teams:</span>
-              <span class="value">8+ Teams • 12 Matches • 1000+ Spectators</span>
+              <span class="value">4 Teams</span>
+            </div>
+            <div class="detail">
+              <span class="label">🎉 Entry & Food:</span>
+              <span class="value">Free Entry • Free Food</span>
             </div>
           </div>
         </div>
