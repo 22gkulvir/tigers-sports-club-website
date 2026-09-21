@@ -74,7 +74,34 @@
               <span class="live-icon">📡</span>
               <h4>Live Stream Coming Soon</h4>
               <p>Join us on Saturday, September 26, 2026 for the Dallas Kabaddi Cup 2026 live stream!</p>
-              <p class="countdown">Event Date: Saturday, September 26, 2026</p>
+
+              <!-- Countdown Timer -->
+              <div class="countdown-container">
+                <div class="countdown-header">
+                  <p class="countdown-title">Event Starting In</p>
+                </div>
+                <div class="countdown-timer">
+                  <div class="countdown-item">
+                    <div class="countdown-value">{{ countdown.days }}</div>
+                    <div class="countdown-label">Days</div>
+                  </div>
+                  <div class="countdown-separator">:</div>
+                  <div class="countdown-item">
+                    <div class="countdown-value">{{ String(countdown.hours).padStart(2, '0') }}</div>
+                    <div class="countdown-label">Hours</div>
+                  </div>
+                  <div class="countdown-separator">:</div>
+                  <div class="countdown-item">
+                    <div class="countdown-value">{{ String(countdown.minutes).padStart(2, '0') }}</div>
+                    <div class="countdown-label">Minutes</div>
+                  </div>
+                  <div class="countdown-separator">:</div>
+                  <div class="countdown-item">
+                    <div class="countdown-value">{{ String(countdown.seconds).padStart(2, '0') }}</div>
+                    <div class="countdown-label">Seconds</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <p v-if="liveVideoId" class="video-info">Watch live matches of Dallas Kabaddi Cup 2026. Event Date: Saturday, September 26, 2026</p>
@@ -185,13 +212,44 @@ const resetAutoAdvance = () => {
 
 onMounted(() => {
   startAutoAdvance()
+  updateCountdown()
+  countdownInterval = setInterval(updateCountdown, 1000)
 })
 
 onUnmounted(() => {
   if (autoAdvanceInterval) {
     clearInterval(autoAdvanceInterval)
   }
+  if (countdownInterval) {
+    clearInterval(countdownInterval)
+  }
 })
+
+// Countdown Timer
+const eventDate = new Date('2026-09-26T12:00:00').getTime()
+const countdown = ref({
+  days: 0,
+  hours: 0,
+  minutes: 0,
+  seconds: 0
+})
+
+let countdownInterval = null
+
+const updateCountdown = () => {
+  const now = new Date().getTime()
+  const timeRemaining = eventDate - now
+
+  if (timeRemaining > 0) {
+    countdown.value.days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24))
+    countdown.value.hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+    countdown.value.minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60))
+    countdown.value.seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000)
+  } else {
+    countdown.value = { days: 0, hours: 0, minutes: 0, seconds: 0 }
+    if (countdownInterval) clearInterval(countdownInterval)
+  }
+}
 
 // YouTube Videos
 // Live video ID - set this on event day with the 2026 live stream link
@@ -936,5 +994,87 @@ const formatDate = (date) => {
   .founders-link a {
     font-size: 0.95rem;
   }
+
+  /* Countdown Mobile */
+  .countdown-timer {
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+  }
+
+  .countdown-item {
+    min-width: 60px;
+  }
+
+  .countdown-value {
+    font-size: 1.8rem;
+  }
+
+  .countdown-separator {
+    font-size: 1.5rem;
+  }
+}
+
+/* Countdown Timer Styles */
+.countdown-container {
+  background: linear-gradient(135deg, rgba(255, 140, 0, 0.1) 0%, rgba(255, 140, 0, 0.05) 100%);
+  border: 2px solid var(--color-primary-orange);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-2xl) var(--spacing-lg);
+  margin: var(--spacing-xl) 0;
+  text-align: center;
+}
+
+.countdown-header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.countdown-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-primary-orange);
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.countdown-timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-lg);
+  flex-wrap: nowrap;
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  min-width: 80px;
+}
+
+.countdown-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-primary-orange);
+  line-height: 1;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 2px;
+}
+
+.countdown-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.countdown-separator {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-primary-orange);
+  opacity: 0.6;
+  margin: 0 var(--spacing-sm);
+  line-height: 1;
 }
 </style>
