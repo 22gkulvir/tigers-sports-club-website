@@ -47,12 +47,11 @@
 import { ref } from 'vue'
 
 const activities = ref([
-  { id: 1, name: 'Kids Race', icon: '🏃', description: 'Fun racing activities for children with prizes and recognition' },
-  { id: 2, name: 'Spoon Race', icon: '🥄', description: 'Traditional spoon race competition for all age groups' },
-  { id: 3, name: 'Kabaddi Training', icon: '🏋️', description: 'Professional coaching and training sessions for players of all levels' },
-  { id: 4, name: 'Community Events', icon: '🎉', description: 'Social gatherings and community engagement activities' },
-  { id: 5, name: 'Youth Development', icon: '👨‍🎓', description: 'Programs to develop young talent in Kabaddi and sports' },
-  { id: 6, name: 'Friendly Matches', icon: '⚽', description: 'Inter-club friendly matches and practice tournaments' }
+  { id: 1, name: 'Boys and Girls Races', icon: '🏃', description: 'Racing competitions for children in age groups: Under 8, Under 12, and Under 16 with prizes and recognition' },
+  { id: 2, name: 'Spoon Race for Ladies', icon: '🥄', description: 'Traditional spoon race competition exclusively for ladies' },
+  { id: 3, name: 'Musical Chair for Ladies', icon: '🎵', description: 'Fun musical chair game for ladies with exciting prizes' },
+  { id: 4, name: 'Volleyball Open for Men', icon: '🏐', description: 'Open volleyball competition for all men with competitive play' },
+  { id: 5, name: 'Tug of War', icon: '🪢', description: 'Team-based tug of war competition for strength and teamwork' }
 ])
 </script>
 
