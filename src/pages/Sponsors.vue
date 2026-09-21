@@ -54,25 +54,6 @@
       <!-- Platinum Tier -->
       <section v-if="platinumSponsors.length > 0" class="sponsor-tier">
         <h2 class="tier-title">
-          <span class="tier-badge gold">Gold Sponsors</span>
-        </h2>
-        <div class="carousel-wrapper">
-          <div class="sponsors-carousel">
-            <div class="carousel-track infinite-scroll" :style="{ animationDuration: `${goldDuration}s` }">
-              <div v-for="(sponsor, idx) in carouselSponsors.gold" :key="`gold-${idx}`" class="sponsor-card gold">
-                <img :src="sponsor" :alt="`Gold Sponsor ${idx + 1}`" class="sponsor-logo" />
-              </div>
-              <div v-for="(sponsor, idx) in carouselSponsors.gold" :key="`gold-dup-${idx}`" class="sponsor-card gold">
-                <img :src="sponsor" :alt="`Gold Sponsor ${idx + 1}`" class="sponsor-logo" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Platinum Tier -->
-      <section v-if="platinumSponsors.length > 0" class="sponsor-tier">
-        <h2 class="tier-title">
           <span class="tier-badge platinum">Platinum Sponsors</span>
         </h2>
         <div class="carousel-wrapper">
@@ -89,19 +70,19 @@
         </div>
       </section>
 
-      <!-- Silver Tier -->
-      <section v-if="silverSponsors.length > 0" class="sponsor-tier">
+      <!-- Gold Tier -->
+      <section v-if="goldSponsors.length > 0" class="sponsor-tier">
         <h2 class="tier-title">
-          <span class="tier-badge silver">Silver Sponsors</span>
+          <span class="tier-badge gold">Gold Sponsors</span>
         </h2>
         <div class="carousel-wrapper">
           <div class="sponsors-carousel">
-            <div class="carousel-track infinite-scroll" :style="{ animationDuration: `${silverDuration}s` }">
-              <div v-for="(sponsor, idx) in carouselSponsors.silver" :key="`silver-${idx}`" class="sponsor-card silver">
-                <img :src="sponsor" :alt="`Silver Sponsor ${idx + 1}`" class="sponsor-logo" />
+            <div class="carousel-track infinite-scroll" :style="{ animationDuration: `${goldDuration}s` }">
+              <div v-for="(sponsor, idx) in carouselSponsors.gold" :key="`gold-${idx}`" class="sponsor-card gold">
+                <img :src="sponsor" :alt="`Gold Sponsor ${idx + 1}`" class="sponsor-logo" />
               </div>
-              <div v-for="(sponsor, idx) in carouselSponsors.silver" :key="`silver-dup-${idx}`" class="sponsor-card silver">
-                <img :src="sponsor" :alt="`Silver Sponsor ${idx + 1}`" class="sponsor-logo" />
+              <div v-for="(sponsor, idx) in carouselSponsors.gold" :key="`gold-dup-${idx}`" class="sponsor-card gold">
+                <img :src="sponsor" :alt="`Gold Sponsor ${idx + 1}`" class="sponsor-logo" />
               </div>
             </div>
           </div>
@@ -121,6 +102,25 @@
               </div>
               <div v-for="(sponsor, idx) in carouselSponsors.proud" :key="`proud-dup-${idx}`" class="sponsor-card proud">
                 <img :src="sponsor" :alt="`Proud Supporter ${idx + 1}`" class="sponsor-logo" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Silver Tier -->
+      <section v-if="silverSponsors.length > 0" class="sponsor-tier">
+        <h2 class="tier-title">
+          <span class="tier-badge silver">Silver Sponsors</span>
+        </h2>
+        <div class="carousel-wrapper">
+          <div class="sponsors-carousel">
+            <div class="carousel-track infinite-scroll" :style="{ animationDuration: `${silverDuration}s` }">
+              <div v-for="(sponsor, idx) in carouselSponsors.silver" :key="`silver-${idx}`" class="sponsor-card silver">
+                <img :src="sponsor" :alt="`Silver Sponsor ${idx + 1}`" class="sponsor-logo" />
+              </div>
+              <div v-for="(sponsor, idx) in carouselSponsors.silver" :key="`silver-dup-${idx}`" class="sponsor-card silver">
+                <img :src="sponsor" :alt="`Silver Sponsor ${idx + 1}`" class="sponsor-logo" />
               </div>
             </div>
           </div>
