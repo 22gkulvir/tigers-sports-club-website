@@ -6,8 +6,53 @@
     </section>
 
     <div class="container">
-      <!-- Gold Tier -->
-      <section v-if="goldSponsors.length > 0" class="sponsor-tier">
+      <!-- Chief Guest -->
+      <section v-if="chiefGuest" class="sponsor-tier chief-guest-tier">
+        <h2 class="tier-title">
+          <span class="tier-badge chief-guest">Chief Guest</span>
+        </h2>
+        <div class="static-sponsor-container">
+          <div class="static-sponsor-card">
+            <img :src="chiefGuest" :alt="chiefGuestName" class="sponsor-logo" />
+            <p class="sponsor-name">{{ chiefGuestName }}</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Grand Sponsor -->
+      <section v-if="grandSponsor" class="sponsor-tier grand-sponsor-tier">
+        <h2 class="tier-title">
+          <span class="tier-badge grand-sponsor">Grand Sponsor</span>
+        </h2>
+        <div class="static-sponsor-container">
+          <div class="static-sponsor-card">
+            <img :src="grandSponsor" :alt="grandSponsorName" class="sponsor-logo" />
+            <p class="sponsor-name">{{ grandSponsorName }}</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Diamond Tier -->
+      <section v-if="diamondSponsors.length > 0" class="sponsor-tier">
+        <h2 class="tier-title">
+          <span class="tier-badge diamond">Diamond Sponsors</span>
+        </h2>
+        <div class="carousel-wrapper">
+          <div class="sponsors-carousel">
+            <div class="carousel-track infinite-scroll" :style="{ animationDuration: `${diamondDuration}s` }">
+              <div v-for="(sponsor, idx) in carouselSponsors.diamond" :key="`diamond-${idx}`" class="sponsor-card diamond">
+                <img :src="sponsor" :alt="`Diamond Sponsor ${idx + 1}`" class="sponsor-logo" />
+              </div>
+              <div v-for="(sponsor, idx) in carouselSponsors.diamond" :key="`diamond-dup-${idx}`" class="sponsor-card diamond">
+                <img :src="sponsor" :alt="`Diamond Sponsor ${idx + 1}`" class="sponsor-logo" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Platinum Tier -->
+      <section v-if="platinumSponsors.length > 0" class="sponsor-tier">
         <h2 class="tier-title">
           <span class="tier-badge gold">Gold Sponsors</span>
         </h2>
@@ -95,18 +140,26 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 
+const chiefGuest = ref(null)
+const chiefGuestName = ref('Chief Guest')
+const grandSponsor = ref(null)
+const grandSponsorName = ref('Grand Sponsor')
+
+const diamondSponsors = ref([])
 const goldSponsors = ref([])
 const platinumSponsors = ref([])
 const silverSponsors = ref([])
 const proudSponsors = ref([])
 
 const carouselSponsors = ref({
+  diamond: [],
   gold: [],
   platinum: [],
   silver: [],
   proud: []
 })
 
+const diamondDuration = ref(0)
 const goldDuration = ref(0)
 const platinumDuration = ref(0)
 const silverDuration = ref(0)
@@ -120,6 +173,26 @@ const calculateDuration = (count) => {
 
 // Dynamically import sponsor images from folders
 const loadSponsorImages = async () => {
+  // Load Chief Guest (single image)
+  const chiefGuestModules = import.meta.glob('@/assets/images/sponsors/chief-guest/*.{jpg,jpeg,png}', { eager: true })
+  const chiefGuestImages = Object.values(chiefGuestModules).map((m) => m.default)
+  if (chiefGuestImages.length > 0) {
+    chiefGuest.value = chiefGuestImages[0]
+  }
+
+  // Load Grand Sponsor (single image)
+  const grandSponsorModules = import.meta.glob('@/assets/images/sponsors/grand-sponsor/*.{jpg,jpeg,png}', { eager: true })
+  const grandSponsorImages = Object.values(grandSponsorModules).map((m) => m.default)
+  if (grandSponsorImages.length > 0) {
+    grandSponsor.value = grandSponsorImages[0]
+  }
+
+  // Load Diamond sponsors
+  const diamondModules = import.meta.glob('@/assets/images/sponsors/diamond/*.{jpg,jpeg,png}', { eager: true })
+  carouselSponsors.value.diamond = Object.values(diamondModules).map((m) => m.default)
+  diamondSponsors.value = carouselSponsors.value.diamond
+  diamondDuration.value = calculateDuration(diamondSponsors.value.length)
+
   // Load Gold sponsors
   const goldModules = import.meta.glob('@/assets/images/sponsors/gold/*.{jpg,jpeg,png}', { eager: true })
   carouselSponsors.value.gold = Object.values(goldModules).map((m) => m.default)
@@ -202,6 +275,25 @@ onMounted(() => {
   letter-spacing: 0.5px;
 }
 
+.tier-badge.chief-guest {
+  background: linear-gradient(135deg, #2a2a2a 0%, #000000 100%);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  color: var(--color-primary-orange);
+  border: 2px solid var(--color-primary-orange);
+}
+
+.tier-badge.grand-sponsor {
+  background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+  box-shadow: 0 4px 15px rgba(255, 140, 0, 0.4);
+  color: var(--color-primary-orange);
+  border: 2px solid var(--color-primary-orange);
+}
+
+.tier-badge.diamond {
+  background: linear-gradient(135deg, #00B0FF 0%, #0080FF 100%);
+  box-shadow: 0 4px 15px rgba(0, 176, 255, 0.3);
+}
+
 .tier-badge.gold {
   background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
   box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
@@ -277,6 +369,57 @@ onMounted(() => {
 .sponsor-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Static Sponsor Containers */
+.static-sponsor-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-xl);
+}
+
+.static-sponsor-card {
+  background: white;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-2xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  max-width: 350px;
+  transition: all 0.3s ease;
+  border: 3px solid var(--color-primary-orange);
+}
+
+.static-sponsor-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(255, 140, 0, 0.2);
+}
+
+.static-sponsor-card .sponsor-logo {
+  max-width: 280px;
+  max-height: 200px;
+  object-fit: contain;
+  display: block;
+}
+
+.sponsor-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-primary-orange);
+  margin: 0;
+  text-align: center;
+}
+
+.sponsor-card.diamond {
+  border-color: #00B0FF;
+}
+
+.sponsor-card.diamond:hover {
+  border-color: #0080FF;
+  box-shadow: 0 8px 20px rgba(0, 176, 255, 0.2);
 }
 
 .sponsor-card.gold {
@@ -375,6 +518,16 @@ onMounted(() => {
 
   .tier-title {
     font-size: 1.2rem;
+  }
+
+  .static-sponsor-card {
+    padding: var(--spacing-xl);
+    max-width: 280px;
+  }
+
+  .static-sponsor-card .sponsor-logo {
+    max-width: 200px;
+    max-height: 150px;
   }
 
   .sponsors-carousel {
