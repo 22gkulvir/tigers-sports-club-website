@@ -367,11 +367,13 @@ const formatDate = (date) => {
   }
 }
 
+/* contain, not cover: the box is a fixed height at full width so its shape
+   never matches the 16:9 photos, and cover would crop the sides on phones and
+   the top and bottom on desktop. */
 .hero-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
+  object-fit: contain;
   display: block;
   background-color: #000;
   flex-shrink: 0;
