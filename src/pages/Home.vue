@@ -994,24 +994,6 @@ const formatDate = (date) => {
   .founders-link a {
     font-size: 0.95rem;
   }
-
-  /* Countdown Mobile */
-  .countdown-timer {
-    flex-wrap: wrap;
-    gap: var(--spacing-sm);
-  }
-
-  .countdown-item {
-    min-width: 60px;
-  }
-
-  .countdown-value {
-    font-size: 1.8rem;
-  }
-
-  .countdown-separator {
-    font-size: 1.5rem;
-  }
 }
 
 /* Countdown Timer Styles */
@@ -1076,5 +1058,57 @@ const formatDate = (date) => {
   opacity: 0.6;
   margin: 0 var(--spacing-sm);
   line-height: 1;
+}
+
+@media (max-width: 768px) {
+  .countdown-container {
+    padding: var(--spacing-lg) var(--spacing-sm);
+    margin: var(--spacing-lg) 0;
+  }
+
+  .countdown-header {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .countdown-title {
+    font-size: 1.1rem;
+  }
+
+  .countdown-timer {
+    gap: 0;
+  }
+
+  /* Let the four units share the row instead of forcing a fixed width that overflows */
+  .countdown-item {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .countdown-value {
+    font-size: 1.75rem;
+    letter-spacing: 1px;
+  }
+
+  .countdown-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
+  }
+
+  .countdown-separator {
+    font-size: 1.4rem;
+    margin: 0;
+    align-self: flex-start;
+    padding-top: 0.15em;
+  }
+}
+
+@media (max-width: 380px) {
+  .countdown-value {
+    font-size: 1.45rem;
+  }
+
+  .countdown-label {
+    font-size: 0.6rem;
+  }
 }
 </style>
