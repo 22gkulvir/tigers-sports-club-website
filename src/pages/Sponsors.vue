@@ -126,19 +126,12 @@
           </div>
         </div>
       </section>
-
-      <!-- Call to Action -->
-      <section class="sponsorship-section">
-        <h2>Become a Sponsor</h2>
-        <p>Interested in sponsoring Tigers Sports Club? Get in touch with us to learn about sponsorship opportunities and visibility.</p>
-        <button class="btn btn-primary">Contact Us</button>
-      </section>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 const chiefGuest = ref(null)
 const chiefGuestName = ref('Chief Guest')
@@ -159,16 +152,22 @@ const carouselSponsors = ref({
   proud: []
 })
 
-const diamondDuration = ref(0)
-const goldDuration = ref(0)
-const platinumDuration = ref(0)
-const silverDuration = ref(0)
-const proudDuration = ref(0)
+const viewportWidth = ref(window.innerWidth)
 
-// Calculate animation duration based on number of sponsors
+// Mobile shows narrower cards, so a shorter duration keeps the perceived speed up
 const calculateDuration = (count) => {
-  // 4 seconds per card for smooth scrolling
-  return Math.max(count * 4, 20)
+  const secondsPerCard = viewportWidth.value <= 768 ? 1.5 : 4
+  return Math.max(count * secondsPerCard, 10)
+}
+
+const diamondDuration = computed(() => calculateDuration(diamondSponsors.value.length))
+const goldDuration = computed(() => calculateDuration(goldSponsors.value.length))
+const platinumDuration = computed(() => calculateDuration(platinumSponsors.value.length))
+const silverDuration = computed(() => calculateDuration(silverSponsors.value.length))
+const proudDuration = computed(() => calculateDuration(proudSponsors.value.length))
+
+const handleResize = () => {
+  viewportWidth.value = window.innerWidth
 }
 
 // Dynamically import sponsor images from folders
@@ -191,35 +190,35 @@ const loadSponsorImages = async () => {
   const diamondModules = import.meta.glob('@/assets/images/sponsors/diamond/*.{jpg,jpeg,png}', { eager: true })
   carouselSponsors.value.diamond = Object.values(diamondModules).map((m) => m.default)
   diamondSponsors.value = carouselSponsors.value.diamond
-  diamondDuration.value = calculateDuration(diamondSponsors.value.length)
 
   // Load Gold sponsors
   const goldModules = import.meta.glob('@/assets/images/sponsors/gold/*.{jpg,jpeg,png}', { eager: true })
   carouselSponsors.value.gold = Object.values(goldModules).map((m) => m.default)
   goldSponsors.value = carouselSponsors.value.gold
-  goldDuration.value = calculateDuration(goldSponsors.value.length)
 
   // Load Platinum sponsors
   const platinumModules = import.meta.glob('@/assets/images/sponsors/platinum/*.{jpg,jpeg,png}', { eager: true })
   carouselSponsors.value.platinum = Object.values(platinumModules).map((m) => m.default)
   platinumSponsors.value = carouselSponsors.value.platinum
-  platinumDuration.value = calculateDuration(platinumSponsors.value.length)
 
   // Load Silver sponsors
   const silverModules = import.meta.glob('@/assets/images/sponsors/silver/*.{jpg,jpeg,png}', { eager: true })
   carouselSponsors.value.silver = Object.values(silverModules).map((m) => m.default)
   silverSponsors.value = carouselSponsors.value.silver
-  silverDuration.value = calculateDuration(silverSponsors.value.length)
 
   // Load Proud supporters
   const proudModules = import.meta.glob('@/assets/images/sponsors/proud/*.{jpg,jpeg,png}', { eager: true })
   carouselSponsors.value.proud = Object.values(proudModules).map((m) => m.default)
   proudSponsors.value = carouselSponsors.value.proud
-  proudDuration.value = calculateDuration(proudSponsors.value.length)
 }
 
 onMounted(() => {
   loadSponsorImages()
+  window.addEventListener('resize', handleResize)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize)
 })
 </script>
 
@@ -253,14 +252,14 @@ onMounted(() => {
 
 /* Sponsor Tier Sections */
 .sponsor-tier {
-  margin-bottom: var(--spacing-3xl);
+  margin-bottom: var(--spacing-lg);
 }
 
 .tier-title {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: var(--spacing-2xl);
+  margin-bottom: var(--spacing-md);
   font-size: 1.5rem;
   color: var(--text-primary);
 }
@@ -325,7 +324,7 @@ onMounted(() => {
   position: relative;
   display: flex;
   align-items: center;
-  padding: var(--spacing-xl) 0;
+  padding: var(--spacing-sm) 0;
 }
 
 .sponsors-carousel {
@@ -381,7 +380,7 @@ onMounted(() => {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: var(--spacing-xl);
+  padding: var(--spacing-sm);
 }
 
 .static-sponsor-card {
@@ -470,51 +469,6 @@ onMounted(() => {
   display: block;
 }
 
-/* Call to Action Section */
-.sponsorship-section {
-  text-align: center;
-  padding: var(--spacing-3xl);
-  background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(255, 140, 0, 0.05) 100%);
-  border-radius: var(--radius-lg);
-  margin-top: var(--spacing-3xl);
-  border-left: 4px solid var(--color-primary-orange);
-}
-
-.sponsorship-section h2 {
-  color: var(--color-primary-orange);
-  margin-bottom: var(--spacing-lg);
-  font-size: 1.8rem;
-}
-
-.sponsorship-section p {
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-xl);
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-.btn {
-  padding: var(--spacing-md) var(--spacing-xl);
-  background: var(--color-primary-orange);
-  color: var(--text-light);
-  border: none;
-  border-radius: var(--radius-lg);
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 1rem;
-}
-
-.btn:hover {
-  background: var(--color-orange-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(255, 140, 0, 0.3);
-}
-
-.btn:active {
-  transform: translateY(0);
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
   .page-header h1 {
@@ -544,10 +498,6 @@ onMounted(() => {
     flex: 0 0 140px;
     height: 120px;
     padding: var(--spacing-sm);
-  }
-
-  .sponsorship-section {
-    padding: var(--spacing-2xl);
   }
 }
 
