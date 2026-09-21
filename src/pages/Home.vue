@@ -73,14 +73,13 @@
           </div>
           <div v-else class="live-placeholder">
             <div class="placeholder-content">
-              <span class="live-icon">📡</span>
               <h4>Live Stream Coming Soon</h4>
-              <p>Join us on Saturday, September 26, 2026 for the Dallas Kabaddi Cup 2026 live stream!</p>
+              <p>Saturday, September 26, 2026 at 12:00 PM</p>
 
               <!-- Countdown Timer -->
               <div class="countdown-container">
                 <div class="countdown-header">
-                  <p class="countdown-title">Event Starting In</p>
+                  <p class="countdown-title">Kabaddi Kabaddi in...</p>
                 </div>
                 <div class="countdown-timer">
                   <div class="countdown-item">
@@ -606,22 +605,6 @@ const formatDate = (date) => {
   color: white;
 }
 
-.live-icon {
-  font-size: 4rem;
-  display: block;
-  margin-bottom: var(--spacing-lg);
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.6;
-  }
-}
-
 .placeholder-content h4 {
   font-size: 1.8rem;
   margin-bottom: var(--spacing-md);
@@ -923,11 +906,6 @@ const formatDate = (date) => {
   .live-placeholder {
     min-height: 280px;
     padding: var(--spacing-2xl) var(--spacing-lg);
-  }
-
-  .live-icon {
-    font-size: 3rem;
-    margin-bottom: var(--spacing-md);
   }
 
   .placeholder-content h4 {
