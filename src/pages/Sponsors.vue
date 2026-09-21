@@ -300,14 +300,15 @@ onMounted(() => {
 }
 
 .tier-badge.platinum {
-  background: linear-gradient(135deg, #E5E4E2 0%, #C0C0C0 100%);
-  color: #1a1a1a;
-  box-shadow: 0 4px 15px rgba(192, 192, 192, 0.3);
+  background: linear-gradient(135deg, #9D4EDD 0%, #7209B7 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(157, 78, 221, 0.4), 0 0 25px rgba(157, 78, 221, 0.2);
 }
 
 .tier-badge.silver {
-  background: linear-gradient(135deg, #C0C0C0 0%, #A9A9A9 100%);
-  box-shadow: 0 4px 15px rgba(169, 169, 169, 0.3);
+  background: linear-gradient(135deg, #00D4FF 0%, #0099CC 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4), 0 0 25px rgba(0, 212, 255, 0.2);
 }
 
 .tier-badge.proud {
@@ -432,21 +433,21 @@ onMounted(() => {
 }
 
 .sponsor-card.platinum {
-  border-color: #C0C0C0;
+  border-color: #9D4EDD;
 }
 
 .sponsor-card.platinum:hover {
-  border-color: #808080;
-  box-shadow: 0 8px 20px rgba(192, 192, 192, 0.2);
+  border-color: #7209B7;
+  box-shadow: 0 8px 20px rgba(157, 78, 221, 0.3);
 }
 
 .sponsor-card.silver {
-  border-color: #A9A9A9;
+  border-color: #00D4FF;
 }
 
 .sponsor-card.silver:hover {
-  border-color: #696969;
-  box-shadow: 0 8px 20px rgba(169, 169, 169, 0.2);
+  border-color: #0099CC;
+  box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
 }
 
 .sponsor-card.proud {
