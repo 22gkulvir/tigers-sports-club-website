@@ -254,7 +254,8 @@ const updateCountdown = () => {
 
 // YouTube Videos
 // Live video ID - set this on event day with the 2026 live stream link
-const liveVideoId = ref('') // Update this on September 26, 2026
+// From https://www.youtube.com/live/9CU9igAW_aA — clear this back to '' after the event
+const liveVideoId = ref('9CU9igAW_aA')
 
 // Past matches - add previous year's tournament video and highlights
 const pastMatches = ref([
